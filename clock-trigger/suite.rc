@@ -1,0 +1,26 @@
+[meta]
+title = "An example suite with daily cycling set off by clock triggers"
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    initial cycle point = 20200131T1502Z
+    # final cycle point = 19831213T0300Z
+    max active cycle points = 1
+
+    [[special tasks]]
+        # Makes sure your task only runs at the cycle time
+        # (The time in brackets is relative to the cycle time)
+        clock-trigger = Daily_Stuff(PT0M)
+
+    [[dependencies]]
+        [[[P1D]]]
+            graph = Daily_Stuff
+            # If you want to make today's task depend on yesterday's
+            # graph = Daily_Stuff[-P1D] => Daily_Stuff
+
+[runtime]
+    [[Daily_Stuff]]
+        # Your script goes in the suite's "bin" directory
+        script = my_script.sh

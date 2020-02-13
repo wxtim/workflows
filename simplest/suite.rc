@@ -1,0 +1,34 @@
+[meta]
+title = "Tim's Very basic suite"
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    # initial cycle point is NOT optional
+    initial cycle point = 19831213T0600Z
+
+    # final cycle point is entirely optional
+    # final cycle point = 19831213T0600Z
+
+    # If you don't use this the suite may run VERY fast
+    max active cycle points = 1
+    [[dependencies]]
+        [[[PT1H]]]
+            graph = Quokka => Numbat => Wambenger
+
+
+[runtime]
+    [[MARSUPIALS]]
+        script="sleep 3"
+
+    [[Quokka]]
+        inherit=MARSUPIALS
+        
+    [[Numbat]]
+        inherit=MARSUPIALS
+
+    [[Wambenger]]
+        inherit=MARSUPIALS
+
+
