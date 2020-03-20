@@ -27,7 +27,9 @@ jobs:
       run: |
         echo "## Workflows" > titles.txt
         for folder in *;do
-          grep -Po "title=(.*)" $folder/suite.rc >> titles.txt
-          grep -Po "meta=(.*)" $folder/suite.rc >> titles.txt
+          if [[ -f $folder/suite.rc ]]; then
+            grep -Po "title=(.*)" $folder/suite.rc >> titles.txt
+            grep -Po "meta=(.*)" $folder/suite.rc >> titles.txt
+          fi
         done
         cat titles.txt
