@@ -28,8 +28,10 @@ jobs:
         echo "## Workflows" > titles.txt
         for folder in *;do
           if [[ -f $folder/suite.rc ]]; then
-            grep -Po "title=(.*)" $folder/suite.rc >> titles.txt
-            grep -Po "meta=(.*)" $folder/suite.rc >> titles.txt
+            grep -P "title.?=.?(.*)" $folder/suite.rc >> titles.txt
+            grep -P "meta.?=.?(.*)" $folder/suite.rc >> titles.txt
           fi
         done
-        cat titles.txt
+        cat titles.txt | awk -F ' = ' '{print $2}' > titles2.txt
+        mv titles2.txt titles.md
+        rm titles.txt
