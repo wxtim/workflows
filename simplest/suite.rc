@@ -14,8 +14,7 @@ title = "Tim's Very basic suite"
     # If you don't use this the suite may run VERY fast
     max active cycle points = 1
     [[dependencies]]
-        [[[PT1H]]]
-            graph = Quokka => Numbat => Wambenger
+        PT1H = Quokka => Numbat => Wambenger
 
 
 [runtime]
