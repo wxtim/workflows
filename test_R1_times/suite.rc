@@ -1,0 +1,38 @@
+[meta]
+title = "A suite designed to check my understanding of Run-once cycles"
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    initial cycle point = 19831213T0600Z
+    final cycle point = 19831213T1500Z
+    max active cycle points = 24
+    [[dependencies]]
+        R1/+PT3H = Numbat[-PT1H] => Startup1 & Startup2 => Startup3
+        PT1H = Quokka => Numbat
+
+
+[runtime]
+    [[MARSUPIALS]]
+        script="sleep 3"
+    
+    [[STARTUP]]
+        script = "sleep 45"
+
+    [[Startup1]]
+        inherit = STARTUP
+
+    [[Startup2]]
+        inherit = STARTUP
+
+    [[Startup3]]
+        inherit = STARTUP
+
+    [[Quokka]]
+        inherit = MARSUPIALS
+        
+    [[Numbat]]
+        inherit = MARSUPIALS
+
+
