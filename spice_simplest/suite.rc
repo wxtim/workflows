@@ -1,0 +1,36 @@
+[meta]
+title = "Tim Pillinger's Very basic Spice Suite"
+warning = """
+    This suite submits very small jobs to a Spice cluster if you site has one
+    set up. 
+    Jobs this size are NOT a good use of Spice resources. Use of this suite
+    for purposes other than learning may bring unwanted attention from your
+    system admins.
+    """
+how to monitor your spice usage = """
+    # Run this script in a different terminal to see what spice is doing
+    watch -n 0.3 sacct --units M --user yourusername --starttime $(date +%H:%M)
+    """
+version = Cylc 8
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    initial cycle point = 19831213T0600Z
+    final cycle point = 19831213T0600Z
+    max active cycle points = 1
+    [[dependencies]]
+        [[[PT1H]]]
+            graph = Nutmeg
+
+
+[runtime]
+    [[Nutmeg]]
+        script="sleep 3"
+        [[[job]]]
+            job file path = "$HOME/cylc-run/spice_simplest/really/hibiscus.log"
+            batch system = slurm
+        [[[directives]]]
+            --time = 00:15
+            --mem = 5Mn
