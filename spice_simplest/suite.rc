@@ -1,5 +1,5 @@
 [meta]
-title = "Tim Pillinger's Very basic Spice Suite"
+title = "Tim Pillinger's very basic Spice Suite"
 warning = """
     This suite submits very small jobs to a Spice cluster if you site has one
     set up. 
@@ -9,9 +9,10 @@ warning = """
     """
 how to monitor your spice usage = """
     # Run this script in a different terminal to see what spice is doing
-    watch -n 0.3 sacct --units M --user yourusername --starttime $(date +%H:%M)
+    now=$(date +%H:%M)
+    export SACCT_FORMAT="jobname%40,jobid%12, reqcpus%4, ncpus%4, reqmem, maxrss, state"
+    watch -n 0.3 sacct --units M --user yourusername --starttime "${now}"
     """
-version = Cylc 8
 
 [cylc]
     UTC mode = True
@@ -29,8 +30,9 @@ version = Cylc 8
     [[Nutmeg]]
         script="sleep 3"
         [[[job]]]
-            job file path = "$HOME/cylc-run/spice_simplest/really/hibiscus.log"
             batch system = slurm
         [[[directives]]]
             --time = 00:15
             --mem = 5Mn
+            # Set custom output dir/file - n.b. dir must exist
+            # --output = "custom/output/dir
