@@ -1,0 +1,28 @@
+[meta]
+title = "A quick demo of Cylc adding `lib/python` to pythonpath"
+cylc version = 7
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    initial cycle point = 20200101T0000Z
+    [[dependencies]]
+        [[[R1]]] 
+            graph = Quokka => Numbat
+
+
+[runtime]
+    [[root]]
+        script = "example.py"
+        [[[environment]]]
+        PYTHONPATH="${CYLC_SUITE_RUN_DIR}/lib/python:${CYLC_SUITE_DEF_PATH}/lib/python:${PYTHONPATH:-}"
+    [[Quokka]]
+        [[[environment]]]
+            whom = Quokka
+    [[Numbat]]
+        [[[environment]]]
+            whom = Numbat
+        
+
+
