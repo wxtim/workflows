@@ -8,4 +8,4 @@ You may find these easier to start with than writing a suite from scratch.
 1. Simplest - a fairly simple suite.
 2. Clock Trigger - a suite showing how one might use a clock trigger.
 3. Shred Utils - How to share a python module between tasks. Done in both Cylc 7 and 8 ways.
-
+4. Five Day Collector - How to run cycles within cycles.
