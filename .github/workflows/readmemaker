@@ -5,7 +5,18 @@ from glob import glob
 
 RE_DESCRIPTION = r"description\s?=\s?[\"']{1,3}\n?(.+?)(?=[\"']{1,3})"
 RE_TITLE = r"title\s?=\s?[\"']?(.+?)(?=[\"'\n])"
+README_STUB = '''
+# Tim's simple Cylc Examples
 
+A small collection of simple suites. 
+You may find these easier to start with than writ
+ing a suite from scratch.
+
+# Index
+
+'''
+
+index_ = {}
 for filename in glob('./*/suite.rc'):
     print(filename)
     with open(filename) as fhandle:
@@ -25,6 +36,14 @@ for filename in glob('./*/suite.rc'):
         readme += f"[N.B.] Suite {title} does not have a description."
     readme += '\n'
 
+    index_[title] = filename
+
     readmefile = filename.replace('suite.rc', 'README.md') 
     with open(readmefile, 'w+') as fh:
         fh.write(readme)
+
+for title, url in index_.items():
+    README_STUB += f"- [{title}]({url})\n"
+
+with open('README.md', 'w+') as fh:
+    fh.write(README_STUB)
