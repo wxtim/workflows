@@ -21,15 +21,9 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Build Readmes
       run: .github/workflows/readmemaker
-      
-      # |
-      #   echo "## Workflows" > titles.txt
-      #   for folder in *;do
-      #     if [[ -f $folder/suite.rc ]]; then
-      #       grep -P "title.?=.?(.*)" $folder/suite.rc >> titles.txt
-      #       grep -P "meta.?=.?(.*)" $folder/suite.rc >> titles.txt
-      #     fi
-      #   done
-      #   cat titles.txt | awk -F ' = ' '{print $2}' > titles2.txt
-      #   mv titles2.txt titles.md
-      #   rm titles.txt
+    - name: Commit Readmes
+      run: |
+        git add ./*/README.md
+        git commit -m "ADDING AUTOMATED README FILES"
+        git push origin HEAD:master
+
