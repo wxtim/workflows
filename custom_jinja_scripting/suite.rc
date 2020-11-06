@@ -6,6 +6,7 @@
     Use loaded information from the json file from ``etc/`` to set up the
     suite.
   """
+written for cylc version = 7.x
 
  # import or loader script
 {% from "inputs" import load %}
