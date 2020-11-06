@@ -35,7 +35,7 @@ for filename in glob('./*/suite.rc'):
         readme += f"[N.B.] Suite {title} does not have a description."
     readme += '\n'
 
-    index_[title] = filename.replace('/README.md', '')
+    index_[title] = filename.replace('/suite.rc', '')
 
     readmefile = filename.replace('suite.rc', 'README.md') 
     with open(readmefile, 'w+') as fh:
