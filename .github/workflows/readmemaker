@@ -26,7 +26,6 @@ for filename in glob('./*/suite.rc'):
     readme += f"### {title}\n"
     if descriptions:
         descriptions = [d for d in descriptions[0].groups()]
-        descriptions = [d.replace('\n', ' ') for d in descriptions]
         descriptions = [d.strip() for d in descriptions]
         descriptions = [' '.join(d.split()) for d in descriptions]
         description = '\n\n'.join(descriptions)
