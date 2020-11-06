@@ -1,10 +1,10 @@
 #!jinja2
 [meta]
-title = "5 day batch statistical processing."
-explanation = """
+title = "5 day batch processing."
+description = """
 An example suite showing how Cylc could be used to collect data
 for blocks of 5 days, carry out some processing for each day,
-and bring the workflow back together again (perahaps to do some
+and bring the workflow back together again (perhaps to do some
 stats, or perhaps just housekeeping).
 
 It also sets `max active cycle points` and `spawn to max active
@@ -14,6 +14,7 @@ committing a lot to memory.
 
 Kiwis, RuRu and Pua are animals native to New Zealand.
 """
+written for cylc version = 7.x
 
 [scheduling]
     max active cycle points = 10
