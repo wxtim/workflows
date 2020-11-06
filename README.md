@@ -1,11 +1,15 @@
+
 # Tim's simple Cylc Examples
 
-A small collection of simple suites. 
+A small collection of simple suites.
 You may find these easier to start with than writing a suite from scratch.
 
+# Index
 
-## Content
-1. Simplest - a fairly simple suite.
-2. Clock Trigger - a suite showing how one might use a clock trigger.
-3. Shred Utils - How to share a python module between tasks. Done in both Cylc 7 and 8 ways.
-4. Five Day Collector - How to run cycles within cycles.
+- [A quick demo of Cylc adding `lib/python` to pythonpath](./shared_utils/suite.rc)
+- [A suite designed to check my understanding of Run-once cycles](./test_R1_times/suite.rc)
+- [Tim](./simplest/suite.rc)
+- [Get Contents of a Jinja2 file for use in workflow definition](./custom_jinja_scripting/suite.rc)
+- [5 day batch statistical processing.](./five-day-collector/suite.rc)
+- [Tim Pillinger](./spice_simplest/suite.rc)
+- [An example suite with daily cycling set off by clock triggers](./clock-trigger/suite.rc)
