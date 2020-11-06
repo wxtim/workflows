@@ -1,6 +1,10 @@
 [meta]
-title = "A quick demo of Cylc adding `lib/python` to pythonpath"
-cylc version = 7
+title = "[Cylc 7] Demo Cylc adding `lib/python` to pythonpath"
+description = """
+Shows how scripts available in lib python are available to
+be run and can be passed environment variables.
+"""
+written for cylc version = 7.x
 
 [cylc]
     UTC mode = True

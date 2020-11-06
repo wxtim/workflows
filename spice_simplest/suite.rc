@@ -1,18 +1,25 @@
 [meta]
-title = "Tim Pillinger's very basic Spice Suite"
-warning = """
-    This suite submits very small jobs to a Spice cluster if you site has one
-    set up. 
-    Jobs this size are NOT a good use of Spice resources. Use of this suite
-    for purposes other than learning may bring unwanted attention from your
-    system admins.
-    """
-how to monitor your spice usage = """
-    # Run this script in a different terminal to see what spice is doing
-    now=$(date +%H:%M)
-    export SACCT_FORMAT="jobname%40,jobid%12, reqcpus%4, ncpus%4, reqmem, maxrss, state"
-    watch -n 0.3 sacct --units M --user yourusername --starttime "${now}"
-    """
+title = "Running on SPICE"
+description = """
+A template for submission of jobs to a SPICE cluster.
+
+### Warning
+> This suite submits very small jobs to a SPICE cluster if you site has one
+> set up.
+> 
+> Jobs this size are NOT a good use of SPICE resources. Use of this suite
+> for purposes other than learning may bring unwanted attention from your
+> system admins.
+
+### How to find out about your jobs SPICE resource usage.
+Run this script in a different terminal to see what SPICE is doing:
+```
+now=$(date +%H:%M)
+export SACCT_FORMAT="jobname%40,jobid%12, reqcpus%4, ncpus%4, reqmem, maxrss, state"
+watch -n 0.3 sacct --units M --user yourusername --starttime "${now}"
+```
+"""
+written for cylc version = 7.x
 
 [cylc]
     UTC mode = True

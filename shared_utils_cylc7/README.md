@@ -1,2 +1,2 @@
-### A quick demo of Cylc adding `lib/python` to pythonpath
-[N.B.] Suite A quick demo of Cylc adding `lib/python` to pythonpath does not have a description.
+### [Cylc 7] Demo Cylc adding `lib/python` to pythonpath
+Shows how scripts available in lib python are available to be run and can be passed environment variables.

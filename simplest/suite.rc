@@ -1,5 +1,9 @@
 [meta]
-title = "Tim's Very basic suite"
+title = "Simplest Workflow"
+description = """
+Should give you just enough to get going
+"""
+written for cylc version = 7.x
 
 [cylc]
     UTC mode = True

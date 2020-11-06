@@ -1,2 +1,2 @@
-### Tim
-[N.B.] Suite Tim does not have a description.
+### Simplest Workflow
+Should give you just enough to get going
