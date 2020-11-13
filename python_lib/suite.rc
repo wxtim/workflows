@@ -1,0 +1,25 @@
+[meta]
+title = "Call a user defined Python Module"
+description = """
+Call a module defined in /lib/python
+"""
+written for cylc version = 7.x
+
+[cylc]
+    [[environment]]
+        CYLC_SUITE_RUN_DIR = $CYLC_SUITE_RUN_DIR
+
+
+[scheduling]
+    initial cycle point = 19831213T0600Z
+    [[dependencies]]
+        [[[R1]]]
+            graph = kiwi
+
+
+[runtime]
+    [[kiwi]]
+        script="""
+            export PYTHONPATH=$PYTHONPATH:$CYLC_SUITE_RUN_DIR/lib/python
+            python -c "import my_module; my_module.hello()"
+        """
