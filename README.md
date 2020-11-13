@@ -9,6 +9,7 @@ You may find these easier to start with than writing a suite from scratch.
 - [[Cylc 7] Demo Cylc adding `lib/python` to pythonpath](./shared_utils_cylc7)
 - [Run once cycles](./test_R1_times)
 - [[Cylc 8] Demo Cylc adding `lib/python` to pythonpath](./shared_utils)
+- [Call a user defined Python Module](./python_lib)
 - [Simplest Workflow](./simplest)
 - [Get Contents of a Jinja2 file for use in workflow definition](./custom_jinja_scripting)
 - [5 day batch processing.](./five-day-collector)
