@@ -36,9 +36,10 @@ written for cylc version = 7.x
   [[tell_me_what_resources_i_used]]
     script = """
       # Get the starttime of the first task
-      STARTUPTIME=$(grep -o "[0-9]*-[0-9]*-[0-9]*T[0-9]*:[0-9]*:[0-9]*" ${CYLC_SUITE_RUN_DIR}/log/job/20000101T0000Z/task_id_123/NN/job.out | head -n 1)
-      echo $STARTUPTIME
       export SACCT_FORMAT="user,jobname%40,jobid%12,reqmem,maxrss, state"
       sacct --user $USER | head -n2
-      sacct --user $USER -S $STARTUPTIME | grep custom_memory_over_time -A1
+
+      for jobid in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/task_id_123/NN/job.status | awk -F '=' '{print $2}'); do
+        sacct -j "$JOBID" --noheader
+      done
     """
