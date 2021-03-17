@@ -1,0 +1,45 @@
+#!jinja2
+[meta]
+  title = Change Slurm memory request at a cycle point.
+  description = """
+    Change the memory requested for a task halfway through a run.
+  """
+written for cylc version = 7.x
+
+[scheduling]
+  initial cycle point = 2000
+  final cycle point = 2005
+  [[dependencies]]
+    [[[P1Y]]]
+      graph = task_id_123[-P1Y] => task_id_123
+    [[[R1/2002]]]
+      graph = task_id_123[-P1Y] => update_memory_allocation => task_id_123
+    [[[R1/P0Y]]]  # Last Cycle point
+      graph = task_id_123 => tell_me_what_resources_i_used
+
+[runtime]
+  [[task_id_123]]
+    script = echo "Hello World"
+    [[[job]]]
+      batch system = slurm
+    [[[directives]]]
+      --mem = 4
+
+  [[update_memory_allocation]]
+      script = """
+          cylc broadcast "${CYLC_SUITE_NAME}" \
+              -n task_id_123 \
+              -p '*' \
+              -s [directives]--mem=8
+      """
+
+  [[tell_me_what_resources_i_used]]
+    script = """
+      # Get the starttime of the first task
+      export SACCT_FORMAT="user,jobname%40,jobid%12,reqmem,maxrss, state"
+      sacct --user $USER | head -n2
+
+      for jobid in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/task_id_123/NN/job.status | awk -F '=' '{print $2}'); do
+        sacct -j "$JOBID" --noheader
+      done
+    """

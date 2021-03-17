@@ -12,6 +12,10 @@ A template for submission of jobs to a SPICE cluster.
 > system admins.
 
 ### How to find out about your jobs SPICE resource usage.
+
+Look at the output of the tell_me_what_resources_i_used task at
+~/cylc-run/spice_simplest/log/job/<final cycle point>/tell_me_what_resources_i_used/NN/job.out
+
 Run this script in a different terminal to see what SPICE is doing:
 ```
 now=$(date +%H:%M)
@@ -31,6 +35,8 @@ written for cylc version = 7.x
     [[dependencies]]
         [[[PT1H]]]
             graph = Nutmeg
+        [[[R1/P0Y]]]
+            graph = tell_me_what_resources_i_used
 
 
 [runtime]
@@ -40,6 +46,18 @@ written for cylc version = 7.x
             batch system = slurm
         [[[directives]]]
             --time = 00:15
-            --mem = 5Mn
-            # Set custom output dir/file - n.b. dir must exist
-            # --output = "custom/output/dir
+            --mem = 128Kn
+
+
+    [[tell_me_what_resources_i_used]]
+        script = """
+            export SACCT_FORMAT="user,jobname%40,jobid%12,reqmem,maxrss, state"
+
+            # Print column headers
+            sacct --user $USER | head -n2
+
+            # Print data for each jobid, which we cull from suite log/job
+            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
+                sacct -j "$JOBID" --noheader
+            done
+        """
