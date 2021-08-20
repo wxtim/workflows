@@ -1,0 +1,43 @@
+[meta]
+written for cylc version = 7.8.7
+compatible with cylc8 = Unlikely, and probably not necessary.
+title = Remove Cylc Lib from Path
+description = """
+    Help a customer with error from importing jinja2.asyncsupport because
+    this was not the version of jinja2 available in the path with the
+    CYLC_DIR/lib included.
+
+    Two possible approaches shown:
+    - Remove in pre-script: Feels more Cylc style.
+    - Remove in Python: Feels horrid. Don't do this routinely.
+"""
+
+[scheduling]
+    initial cycle point = 2020
+    [[dependencies]]
+        [[[R1]]]
+            graph = Info & RemoveInPreScript & RemoveInPython
+
+
+[runtime]
+    [[Info]]
+        script = """
+            echo "CYLC_DIR is ${CYLC_DIR}"
+            echo "PYTHONPATH is ${PYTHONPATH}
+            echo "Using this Python: $(which python)"
+            echo "Python version is: $(python --version)"
+        """
+
+    [[RemoveInPreScript]]
+        pre-script = """
+            module load scitools
+            PYTHONPATH=${PYTHONPATH//${CYLC_DIR}/lib:${CYLC_DIR}/lib//}
+        """
+        script = """
+            python -c 'import jinja2.asyncsupport'
+        """
+
+    [[RemoveInPython]]
+        script = """
+            python -c 'import sys; sys.path = sys.path[2:]; import jinja2.asyncsupport'
+        """
