@@ -14,3 +14,4 @@ You may find these easier to start with than writing a suite from scratch.
 - [5 day batch processing.](./five-day-collector)
 - [Running on SPICE](./spice_simplest)
 - [Suite daily cycling triggered by clock.](./clock-trigger)
+- [Queing and Parameterization.](./Queues)
