@@ -1,0 +1,38 @@
+[meta]
+title="different Rose app conf"
+description="""
+A workflow (suite) demonstating how to use Rose optional configs to run a
+different configuration at different cycle points.
+"""
+written with cylc version = 7.8.7
+written with rose version = 2019.01.5
+
+[scheduling]
+    initial cycle point = 1066
+    final cycle point = 1069
+    [[dependencies]]
+        [[[R1]]]
+            graph = myapp_cold
+        [[[P1Y]]]
+            graph = myapp
+
+[runtime]
+    [[MYAPP]]
+        pre-script = """
+            echo "${CYLC_TASK_CYCLE_POINT}"
+            echo "${CYLC_SUITE_INITIAL_CYCLE_POINT}"
+            if [[ "${CYLC_TASK_CYCLE_POINT}" == "${CYLC_SUITE_INITIAL_CYCLE_POINT}" ]]; then
+                echo "This is the initial cycle point!"
+            else
+                echo "This is __NOT__ the initial cycle point."
+            fi
+        """
+        [[[meta]]]
+            note = "Common settings for this app"
+
+    [[myapp]]
+        inherit = MYAPP
+        script = rose task-run
+    [[myapp_cold]]
+        inherit = MYAPP
+        script = rose task-run --opt cold --app-key myapp

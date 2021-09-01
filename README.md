@@ -17,3 +17,4 @@ You may find these easier to start with than writing a suite from scratch.
 - [Running on SPICE](./spice_simplest)
 - [[Cylc 8] Demo Cylc adding `lib/python` to pythonpath](./shared_utils)
 - [Run once cycles](./test_R1_times)
+- [Running different Rose optional configs at different cycle points](./rose-task-opts-a-cycle-point)
