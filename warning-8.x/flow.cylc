@@ -1,0 +1,36 @@
+[meta]
+title = "Have Cylc Send an email when a task uses Cylc Message"
+description = """
+Toy example of getting the scheduler to email you a warning if:
+
+- A bash script uses the `cylc message` command.
+- A python script uses `cylc message` in a subprocess.
+"""
+written for cylc version = 8.x
+tested with cylc version = 8.0b3.dev
+
+[scheduler]
+    # Avoid Cylc Rolling it all up into 1 email.
+    [[mail]]
+        task event batch interval = PT1S
+
+[scheduling]
+    initial cycle point = 1066
+    [[graph]]
+        R1 = example_from_docs & python_call_to_cylc_message
+
+[runtime]
+    [[root]]
+        [[[events]]]
+            mail events = warning
+    [[example_from_docs]]
+        # Bash Script calls Cylc Message.
+        script = """
+            # Log a warning to job.stdout, send an email notification
+            cylc message -- "${CYLC_SUITE_NAME}" "${CYLC_TASK_JOB}" \
+            "WARNING:Uh-oh, something's not right here."
+        """
+    [[python_call_to_cylc_message]]
+        # Python Script calls Cylc Message.
+        pre-script = sleep 5
+        script = mypythonscript

@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+from subprocess import call
+from shlex import split
+import os
+
+cylc_suite_name = os.path.expandvars(os.getenv('CYLC_SUITE_NAME'))
+cylc_task_job = os.getenv('CYLC_TASK_JOB')
+
+call(
+    split(
+        'cylc message -- "{}" "{}" "WARNING:'
+        'Uh-oh, something\'s not right here."'.format(
+            cylc_suite_name, cylc_task_job
+        )
+    )
+)
