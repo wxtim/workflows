@@ -1,7 +1,7 @@
 
 # Tim's simple Cylc Examples
 
-A small collection of simple suites. 
+A small collection of simple suites.
 You may find these easier to start with than writing a suite from scratch.
 
 # Index
@@ -23,4 +23,3 @@ You may find these easier to start with than writing a suite from scratch.
 | [Have Cylc Send an email when a task uses Cylc Message](./warning)               | 7.x          | 7.8.7        |
 | [Have Cylc Send an email when a task uses Cylc Message](./warning-8.x)           | 8.x          | 8.0b3.dev    |
 | [Simplest Workflow](./simplest-8.x)                                              | 8.x          | 8.0b3.dev    |
-
