@@ -65,4 +65,5 @@ examples = [example(i) for i in examples]
 
 print(f'| {"Workflow":80} | {"Written With":12} | {"Tested On":12} |\n| {"-"*80} | {"-"*12} | {"-"*12} |')
 for e in examples:
-    print(e)
+    if not str(e).startswith('| []'):
+        print(e)
