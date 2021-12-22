@@ -20,5 +20,5 @@ You may find these easier to start with than writing a suite from scratch.
 | [[Cylc 8] Demo Cylc adding `lib/python` to pythonpath](./shared_utils)           | 8.x          |              |
 | [Run once cycles](./test_R1_times)                                               | 7.x          |              |
 | [Have Cylc Send an email when a task uses Cylc Message](./warning-8.x)           | 8.x          | 8.0b3.dev    |
-| [Tim's Template workflow](./comprehensive)                                       | 8.x          |              |
+| [Tim's Template workflow](./comprehensive)                                       | 8.x          | 8.0rc1.dev   |
 | [Simplest Workflow](./simplest-8.x)                                              | 8.x          | 8.0b3.dev    |
