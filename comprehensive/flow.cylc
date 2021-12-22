@@ -15,7 +15,7 @@
 
 [scheduler]
     UTC mode = True
-    allow implicit tasks = True
+    allow implicit tasks = False
     cycle point format = CCYYMMDDThhmmZ
 
 [task parameters]
