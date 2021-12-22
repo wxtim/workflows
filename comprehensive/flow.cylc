@@ -11,7 +11,7 @@
     URL = ""
     my_custom_field = ""
     written for cylc version = "8.x"
-    written with cylc version = "8.0rc1.dev"
+    tested with cylc version = "8.0rc1.dev"
 
 [scheduler]
     UTC mode = True
