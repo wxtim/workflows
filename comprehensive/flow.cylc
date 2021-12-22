@@ -1,7 +1,7 @@
 #!jinja2
 
 [meta]
-    title = "Tim's Template workflow"
+    title = "All the common options to use as a template."
     description = """
                     You might want to add your own content.
 
