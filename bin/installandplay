@@ -1,0 +1,26 @@
+#!/bin/bash
+# Install and play all workflows from this collection.
+#
+# 1. No args: copy the source to your cylc-src directory,
+#    allowing you to modify it before running.
+# 2. `installandplay install`: install workflow using Cylc install.
+# 3. `installandplay install play`: install workflow using Cylc install,
+#    then play said workflow.
+
+
+WORKFLOWSPATH="${HOME}/metomi/workflows/"
+
+for workflow in $(find "${WORKFLOWSPATH}" -name "flow.cylc"); do
+    datestamp="$(date +%Y%m%dT%H%M%S)"
+    flowname="$(basename "$(dirname "$workflow")")"
+    if [[ "${1:-}" == 'install' ]]; then
+        cylc install -C "$workflow" --flow-name "$flowname" --run-name="${datestamp}"
+        if [[ ${2:-} == 'play' ]]; then
+            cylc play "${flowname}/${datestamp}"
+        fi
+    else
+        flowname="$(basename "$(dirname "$workflow")")"
+        cp -r $workflow ${HOME}/cylc-src/"${flowname}.${datestamp}"
+        echo "Find your flow in ${HOME}/cylc-src/"${flowname}.${datestamp}""
+    fi
+done
