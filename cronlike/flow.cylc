@@ -1,0 +1,39 @@
+#!jinja2
+
+[meta]
+    title = "Cron replacement workflow"
+    description = """
+        Examples of using Cylc to replace cron.
+                """
+    URL = ""
+    my_custom_field = ""
+    written for cylc version = "8.x"
+    tested with cylc version = "8.0rc1.dev"
+
+[scheduler]
+    UTC mode = True
+    allow implicit tasks = True
+    cycle point format = CCYYMMDDThhmmZ
+
+[scheduling]
+    initial cycle point = 20211220T0000Z
+
+    [[xtriggers]]
+        ten_past_trigger = wall_clock(offset=PT15M)
+
+    [[graph]]
+        0202T00 = @wall_clock => Feb_2nd_every_year
+        T-05 = @wall_clock => _5_past_every_hour
+        T0005 = @wall_clock => _5_past_midnight_every_day
+        01T1415 = @wall_clock => _2_15_PM_first_each_month
+
+        # Every weekday is a bit nasty.
+        # See ``cylc config .`` to see what this does:
+        {% for i in range(20, 25) %}
+        202112{{i}}T0000Z/P1W = @wall_clock => every_weekday_at_midnight
+        {% endfor %}
+
+
+[runtime]
+    [[root]]
+        script = echo "Hello World!"

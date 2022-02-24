@@ -1,0 +1,68 @@
+#!jinja2
+
+[meta]
+    title = "All the common options to use as a template."
+    description = """
+                    You might want to add your own content.
+
+                    Nothing here is commented, thats what the
+                    Cylc docs are for.
+                """
+    URL = ""
+    my_custom_field = ""
+    written for cylc version = "8.x"
+    tested with cylc version = "8.0rc1.dev"
+
+[scheduler]
+    UTC mode = True
+    allow implicit tasks = False
+    cycle point format = CCYYMMDDThhmmZ
+
+[task parameters]
+    dances = swalwell, murton, poppleton, elgin
+    members = 1..5
+
+[scheduling]
+    initial cycle point = {{ initial_cycle_point|default(1066) }}
+    final cycle point = {{ final_cycle_point|default(1068) }}
+
+    [[xtriggers]]
+        ten_past_trigger = wall_clock(offset=PT15M)
+
+    [[graph]]
+        # Start and end point tasks
+        R1 = run_once_at_start
+        R1/P0Y = run_once_at_end
+
+        # Inferred recurrance
+        T00 = run_at_midnight_cycle_point
+        T00 = @wall_clock => run_at_midnight_in_reality
+
+        T-37 = run_at_37_past_every_hour
+
+        # Explict Recurrance
+        PT15M = every_15_mins
+
+[runtime]
+    [[root]]
+        script = echo "Hello People!"
+
+    [[MY_FAMILY]]
+
+    [[my_task]]
+        platform = our_supercomputer
+        inherit = MY_FAMILY
+
+        # Scripting
+        script = echo "" # rose task-run # if you want to use a rose app.
+
+        # Retries
+        execution retry delays = PT5M
+        execution time limit = PT10M
+
+        # Environment Variables:
+        [[[environment]]]
+            FOO = "some variable"
+
+        # Directives for the job runner:
+        [[[directives]]]
