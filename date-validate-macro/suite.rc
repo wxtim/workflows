@@ -1,5 +1,5 @@
 [meta]
-title = "Example Rose date validation macro."
+title = "Rose date validation macro."
 description = """
     A Rose app with a validation macro to check the validity of datetimes.
 
