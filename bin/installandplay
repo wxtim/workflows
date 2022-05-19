@@ -12,7 +12,8 @@ WORKFLOWSPATH="${HOME}/metomi/workflows/"
 
 for workflow in $(find "${WORKFLOWSPATH}" -name "flow.cylc"); do
     if [[ "$workflow/opt/rose-suite-*.conf" ]]; then
-        for option in "$workflow/opt/rose-suite-*.conf"; done
+        for option in $workflow/opt/rose-suite-*.conf; do
+            echo "${option}"
         done
     fi
     datestamp="$(date +%Y%m%dT%H%M%S)"

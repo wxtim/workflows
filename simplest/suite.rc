@@ -18,7 +18,8 @@ written for cylc version = 7.x
     # If you don't use this the suite may run VERY fast
     max active cycle points = 1
     [[dependencies]]
-        PT1H = Quokka => Numbat => Wambenger
+        [[[PT1H]]]
+            graph = Quokka => Numbat => Wambenger
 
 
 [runtime]
@@ -27,7 +28,7 @@ written for cylc version = 7.x
 
     [[Quokka]]
         inherit=MARSUPIALS
-        
+
     [[Numbat]]
         inherit=MARSUPIALS
 
