@@ -4,6 +4,7 @@ description = """
 Should give you just enough to get going
 """
 written for cylc version = 7.x
+test with cylc version = 7.8.11
 
 [cylc]
     UTC mode = True
