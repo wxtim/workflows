@@ -10,6 +10,7 @@ You may find these easier to start with than writing a suite from scratch.
 | -------------------------------------------------------------------------------- | ------------ | ------------ |
 | [Have Cylc Send an email when a task uses Cylc Message](./warning)               | 7.x          | 7.8.7        |
 | [Change Slurm memory request at a cycle point.](./custom_memory_over_time)       | 7.x          |              |
+| [Passing Station Lists](./return-info)                                           | 7.x          |              |
 | [Running on SPICE](./spice_simplest)                                             | 7.x          |              |
 | [Demonstration of Queues and Parameterization](./Queues)                         | 7.x          |              |
 | [different Rose app conf](./rose-task-opts-a-cycle-point)                        |              |              |
