@@ -1,8 +1,7 @@
 [meta]
 title = "Passing Station Lists"
 description = """
-Scenario
---------
+## Scenario
 
 You have a task which retrieves data from a set of observation
 points and passes it to a data processing task.
@@ -11,8 +10,7 @@ Some of the sensors are broken some of the time, and you want your data
 processing task to know which ones are working (or broken, the principle is
 the same).
 
-Methodologies
--------------
+## Methodologies
 
 1. Use Cylc Broadcast - Modify the task environment by broadcasting environ-
    -ment variables - suitable for smaller amounts of data, if for example
