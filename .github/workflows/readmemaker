@@ -26,13 +26,9 @@ for filename in glob('./*/suite.rc'):
     readme = ''
     title = list(re.finditer(RE_TITLE, data, re.MULTILINE))[0].groups()[0]
     descriptions = list(re.finditer(RE_DESCRIPTION, data, re.MULTILINE | re.DOTALL))
-    readme += f"### {title}\n"
+    readme += f"# {title}\n"
     if descriptions:
-        descriptions = [d for d in descriptions[0].groups()]
-        descriptions = [d.strip() for d in descriptions]
-        descriptions = [' '.join(d.split()) for d in descriptions]
-        description = '\n\n'.join(descriptions)
-        readme += description
+        readme += descriptions[0].groups()[0]
     else:
         readme += f"[N.B.] Suite {title} does not have a description."
     readme += '\n'
