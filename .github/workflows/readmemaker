@@ -39,7 +39,7 @@ for filename in glob('./*/suite.rc'):
 
     index_[title] = filename.replace('/suite.rc', '')
 
-    readmefile = filename.replace('suite.rc', 'README.md') 
+    readmefile = filename.replace('suite.rc', 'README.md')
     with open(readmefile, 'w+') as fh:
         fh.write(readme)
 
