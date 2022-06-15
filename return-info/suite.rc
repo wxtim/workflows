@@ -1,0 +1,75 @@
+[meta]
+title = "Passing Station Lists"
+description = """
+Scenario
+--------
+
+You have a task which retrieves data from a set of observation
+points and passes it to a data processing task.
+
+Some of the sensors are broken some of the time, and you want your data
+processing task to know which ones are working (or broken, the principle is
+the same).
+
+Methodologies
+-------------
+
+1. Use Cylc Broadcast - Modify the task environment by broadcasting environ-
+   -ment variables - suitable for smaller amounts of data, if for example
+   you want to pass on fewer than a dozen or so broken sensor IDs.
+2. Use a file in ~/cylc-run/workflow/share/<cycle>/ to store the data. More
+   suitable if you want to store lists of many tens or more working sensors.
+
+There is no reason that the get_stations couldn't be a single task which
+both saved a file and broadcast a variable. I've separated them to illustrate
+the approaches.
+"""
+written for cylc version = 7.x
+test with cylc version = 7.8.11
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    initial cycle point = 1066
+
+    [[dependencies]]
+        [[[R1]]]
+            graph = """
+                get_stations_broadcast => process_stations_broadcast
+                get_stations_file => process_stations_file
+            """
+
+
+[runtime]
+    [[get_stations_broadcast]]
+        script = """
+            # Get a list of stations; broadcast the list back to the workflow.
+            # You can do the broadcast inside the script.
+            STATIONS=$(getstations)
+            echo $STATIONS
+
+            # Broadcasting like this adds the variable to all tasks:
+            cylc broadcast -s "[environment]STATIONS=${N_STATIONS}" "$CYLC_SUITE_NAME"
+        """
+
+    [[process_stations_broadcast]]
+        script = """
+            echo "Stations were = ${STATIONS}"
+        """
+
+    [[get_stations_file]]
+        script = """
+            # Get a list of stations and dump these in a file available
+            # to the workflow.
+            mkdir -p "${CYLC_SUITE_SHARE_DIR}/${CYLC_TASK_CYCLE_POINT}"
+            stations=$(getstations --file)
+            for station in "${stations[@]}"; do
+                echo "$station" >> "${CYLC_SUITE_SHARE_DIR}/${CYLC_TASK_CYCLE_POINT}/ok-stations.data"
+            done
+        """
+
+    [[process_stations_file]]
+        script = """
+            cat "${CYLC_SUITE_SHARE_DIR}/${CYLC_TASK_CYCLE_POINT}/ok-stations.data"
+        """
