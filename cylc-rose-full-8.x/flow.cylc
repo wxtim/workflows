@@ -1,6 +1,2 @@
-# Example Cylc Rose Workflow
-Designed to be a template with place-holders for lots of different features.
-
-You should control most of the features by using `rose config-edit` or
-editing the `rose-suite.conf` file.
-
+### Rose date validation macro.
+[N.B.] Suite Rose date validation macro. does not have a description.

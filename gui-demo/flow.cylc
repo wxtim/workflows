@@ -1,0 +1,33 @@
+#!jinja2
+
+[meta]
+description = """
+Cylc GUI example
+"""
+
+[scheduling]
+    initial cycle point = 1066
+    final cycle point = 1078
+    [[graph]]
+        P1Y = """
+            task_should_fail_fewer_than_3times[-P1Y] => task_should_fail_fewer_than_3times & task_should_fail_to_submit
+            task_should_fail_to_submit:submit-fail => recover
+            task_should_fail_fewer_than_3times => task_should_succeed
+            task_should_fail_to_submit | recover => task_should_succeed
+            ADDAMS:succeed-all => task_should_succeed
+        """
+
+
+[runtime]
+    [[ADDAMS]]
+
+    [[gomez, morticia, wednesday]]
+        inherit = ADDAMS
+
+    [[task_should_fail_fewer_than_3times]]
+        script = fail_and_a_half
+
+    [[task_should_fail_to_submit]]
+        platform = nineandthreequarters
+
+    [[recover, task_should_succeed]]

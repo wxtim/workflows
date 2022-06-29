@@ -1,0 +1,27 @@
+#!/bin/bash
+# Task succeeds or fails depending on Cylc task submit number
+
+main() {
+    case "${CYLC_TASK_SUBMIT_NUMBER}" in
+        "1")
+            echo "Never succeed on the 1st try."
+            exit 1
+        ;;
+        "2")
+            echo "Randomly succeed on the 2rd try."
+            if [[ $((RANDOM % 2)) == 1 ]]; then
+                echo "OK"
+                exit 0
+            else
+                echo "FAIL"
+                exit 1
+            fi
+        ;;
+        *)
+            echo "Always succeed on the 3rd try."
+            exit 0
+        ;;
+    esac
+}
+
+main

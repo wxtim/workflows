@@ -18,16 +18,25 @@ You may find these easier to start with than writing a suite from scratch.
 
 '''
 
+filenames = list(glob('./*/suite.rc')) + list(glob('./*/flow.cylc'))
+
 index_ = {}
-for filename in glob('./*/suite.rc') and glob('./*/flow.cylc'):
-    if 'demo' in filename:
-        continue
+for filename in filenames:
     print(filename)
+    if (Path(filename).parent / '.readmelock').exists():
+        continue
     with open(filename) as fhandle:
         data = fhandle.read()
     readme = ''
-    title = list(re.finditer(RE_TITLE, data, re.MULTILINE))[0].groups()[0]
-    descriptions = list(re.finditer(RE_DESCRIPTION, data, re.MULTILINE | re.DOTALL))
+    try:
+        title = list(re.finditer(RE_TITLE, data, re.MULTILINE))[0].groups()[0]
+    except IndexError:
+        print('did not find title')
+    try:
+        descriptions = list(re.finditer(RE_DESCRIPTION, data, re.MULTILINE | re.DOTALL))
+    except IndexError:
+        pass
+
     readme += f"### {title}\n"
     if descriptions:
         descriptions = [d for d in descriptions[0].groups()]
@@ -41,7 +50,7 @@ for filename in glob('./*/suite.rc') and glob('./*/flow.cylc'):
 
     index_[title] = filename.replace('/suite.rc', '')
 
-    readmefile = filename.replace('suite.rc', 'README.md') 
+    readmefile = filename.replace('suite.rc', 'README.md')
     with open(readmefile, 'w+') as fh:
         fh.write(readme)
 

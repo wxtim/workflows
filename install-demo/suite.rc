@@ -1,0 +1,16 @@
+#!jinja2
+[scheduling]
+    initial cycle point = {{INITIAL_CYCLE_POINT}}
+    final cycle point = {{FINAL_CYCLE_POINT}}
+    [[dependencies]]
+        [[[P1Y]]]
+            graph = {{TASK_NAME}}_1 => {{TASK_NAME}}_2
+
+[runtime]
+    [[{{TASK_NAME}}_1, {{TASK_NAME}}_2]]
+        script="sleep {{DUMMY_TASK_SLEEP_TIME}}"
+
+{% if REMOTE == True %}
+        [[[remote]]]
+            host = xcfl01
+{% endif %}
