@@ -1,4 +1,4 @@
-# Running on SPICE
+### Running on SPICE
 A template for submission of jobs to a SPICE cluster.
 
 ### Warning
