@@ -19,7 +19,9 @@ You may find these easier to start with than writing a suite from scratch.
 '''
 
 index_ = {}
-for filename in glob('./*/suite.rc'):
+for filename in glob('./*/suite.rc') and glob('./*/flow.cylc'):
+    if 'demo' in filename:
+        continue
     print(filename)
     with open(filename) as fhandle:
         data = fhandle.read()

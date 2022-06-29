@@ -20,9 +20,4 @@ You may find these easier to start with than writing a suite from scratch.
 | [Change Slurm memory request at a cycle point.](./custom_memory_over_time)       | 7.x          |              |
 | [Remove Cylc Lib from Path](./pythonconflict)                                    | 7.8.7        |              |
 | [Have Cylc Send an email when a task uses Cylc Message](./warning)               | 7.x          | 7.8.7        |
-| [Have Cylc Send an email when a task uses Cylc Message](./warning-8.x)           | 8.x          | 8.0b3.dev    |
-| [Simplest Workflow](./simplest-8.x)                                              | 8.x          | 8.0b3.dev    |
-| [Example Cylc Rose Workflow](./cylc-rose-full-8.x)                               | 8.x          | 8.0rc1.dev   |
-| [Boilerplate](./dev-8.x)                                                         | 8.x          |              |
-| [Cron replacement workflow](./cronlike)                                          | 8.x          | 8.0rc1.dev   |
-| [Simplest Workflow (With Rose)](./simplest-8.x-with-rose)                        | 8.x          | 8.0b3.dev    |
+| [Passing Station Lists](./return-info)                                           | 7.x          |              |
