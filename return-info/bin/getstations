@@ -1,0 +1,28 @@
+#!/bin/bash
+# Simulates some process where a subset of stations are picked.
+#
+# prints:
+#   Some Station Names
+#   Count of station names printed
+
+STATIONS=('Morden' 'Golders Green' 'Euston' 'South Kensington' 'Mornington Crescent')
+OUTPUT=()
+
+counter=0
+# For station in stations flip a coin and say station is "working" if coin
+# comes up heads:
+for station in "${STATIONS[@]}"; do
+    if [[ $(( RANDOM % 2 )) == 1 ]]; then
+        OUTPUT+=("'${station}'")
+        counter=$((counter + 1))
+    fi
+done
+
+# If arg "--file" output line by line formatting.
+if [[ "${1:-}" == "--file" ]]; then
+    for station in "${OUTPUT[@]}"; do
+        echo "${station}"
+    done
+else
+    echo "${OUTPUT[@]}"
+fi
