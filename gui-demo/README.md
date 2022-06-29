@@ -12,7 +12,7 @@ git clone --branch demo --single-branch git@github.com:oliver-sanders/cylc-8-wor
 # The rest of this tutorial we assume that you are in the folder you've just created:
 cd cylc-8-workshops/gui-demo
 
-# Install the workflow and set it running
+# Install the workflow
 cylc install
 ```
 
