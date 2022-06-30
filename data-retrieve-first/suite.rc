@@ -3,7 +3,7 @@ title = "Data Retrieve & Process Workflow"
 description = """
 Contains 2 tasks:
 
-- data_getter: Doesn't need much memory, but requires a longer timeout limit.
+- data_getter: Does not need much memory, but requires a longer timeout limit.
   may need retrying.
 - data_handler: Needs much more memory, and should only happen if the data
   getter suceeds.
