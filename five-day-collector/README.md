@@ -1,4 +1,4 @@
-# 5 day batch processing.
+### 5 day batch processing.
 An example suite showing how Cylc could be used to collect data
 for blocks of 5 days, carry out some processing for each day,
 and bring the workflow back together again (perhaps to do some

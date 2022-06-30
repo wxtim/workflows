@@ -1,34 +1,3 @@
-[meta]
-title = "Simplest Workflow"
-description = """
+### Simplest Workflow
 Should give you just enough to get going
-"""
-written for cylc version = 8.x
-tested with cylc version = 8.0b3.dev
 
-[scheduling]
-    # initial cycle point is NOT optional
-    initial cycle point = 19831213T0600Z
-
-    # final cycle point is entirely optional
-    # final cycle point = 19831213T0600Z
-
-    # If you don't use this the suite may run VERY fast
-    runahead limit = PT1H
-    [[dependencies]]
-        PT1H = Quokka => Numbat? => Wambenger
-        PT1H = Numbat:fail? => Thylocene
-
-
-[runtime]
-    [[root]]
-        script="sleep 5"
-
-    [[Quokka]]
-
-    [[Numbat]]
-        script = test $(($RANDOM % 2)) == 1 && exit 0 || exit 1
-
-    [[Wambenger]]
-
-    [[Thylocene]]

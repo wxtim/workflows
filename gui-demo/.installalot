@@ -1,0 +1,12 @@
+#!/bin/bash
+# Installs a fair few cylc workflows for demo purposes:
+
+ITERATIONS="${1:-1}"
+
+NAME=$(shuf -n1 /usr/share/dict/words)
+for _ in $(seq 1 "${ITERATIONS}"); do
+    if [[ $((RANDOM % 2)) == 0 ]]; then
+        NAME=$(shuf -n1 /usr/share/dict/words)
+    fi
+    cylc install /home/h02/tpilling/metomi/workflows/gui-demo --workflow-name="${NAME}"
+done

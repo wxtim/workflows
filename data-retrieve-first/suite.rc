@@ -1,0 +1,62 @@
+[meta]
+title = "Data Retrieve & Process Workflow"
+description = """
+Contains 2 tasks:
+
+- data_getter: Doesn't need much memory, but requires a longer timeout limit.
+  may need retrying.
+- data_handler: Needs much more memory, and should only happen if the data
+  getter suceeds.
+- tell_me_what_resources_i_used: Optional 3rd task prints the computer cost
+  of the first two tasks.
+"""
+written for cylc version = 7.x
+test with cylc version = 7.8.11
+
+[cylc]
+    UTC mode = True
+
+[scheduling]
+    cycling mode = integer
+    initial cycle point = 1
+
+    [[dependencies]]
+        [[[R1]]]
+            graph = get_data => do_stuff => tell_me_what_resources_i_used
+
+
+[runtime]
+    [[get_data]]
+        script = data_getter   # in $PWD/bin/data_getter or just write a script
+        [[[job]]]
+            batch system = slurm
+            execution timeout limit = PT6H   # Replaces directive --time
+            execution retry delays = 3*PT1M  # Where 3 is number of retries.
+        [[[directives]]]
+            --mem=3Gn
+            --qos=long
+
+    [[do_stuff]]
+        script = data_handler   # in $PWD/bin/data_getter or just write a script
+        [[[job]]]
+            batch system = slurm
+            execution timeout limit = PT3H   # Replaces directive --time
+        [[[directives]]]
+            --mem=50Gn
+            --qos=normal
+
+    [[tell_me_what_resources_i_used]]
+        script = """
+            export SACCT_FORMAT="user,jobname%40,jobid%12,reqmem,maxrss, state"
+
+            # Print column headers
+            sacct --user $USER | head -n2
+
+            # Print data for each jobid, which we cull from suite log/job
+            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
+                sacct -j "$JOBID" --noheader
+            done
+        """
+        [[[job]]]
+            # Runs on Cylc Workflow Server:
+            batch system = background
