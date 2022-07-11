@@ -30,7 +30,7 @@ test with cylc version = 7.8.11
         script = data_getter   # in $PWD/bin/data_getter or just write a script
         [[[job]]]
             batch system = slurm
-            execution timeout limit = PT6H   # Replaces directive --time
+            execution time limit = PT6H   # Replaces directive --time
             execution retry delays = 3*PT1M  # Where 3 is number of retries.
         [[[directives]]]
             --mem=3Gn
@@ -40,7 +40,7 @@ test with cylc version = 7.8.11
         script = data_handler   # in $PWD/bin/data_getter or just write a script
         [[[job]]]
             batch system = slurm
-            execution timeout limit = PT3H   # Replaces directive --time
+            execution time limit = PT3H   # Replaces directive --time
         [[[directives]]]
             --mem=50Gn
             --qos=normal
