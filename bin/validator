@@ -7,6 +7,14 @@ set -eux
 cylc version --long
 
 for workflow in */flow.cylc; do
+    echo "${workflow}"
     dir=$(dirname "$workflow")
     cylc validate "${PWD}/${dir}"
+done
+
+for workflow in */suite.rc; do
+    echo "${workflow}"
+    dir=$(dirname "$workflow")
+    cylc validate "${PWD}/${dir}"
+
 done

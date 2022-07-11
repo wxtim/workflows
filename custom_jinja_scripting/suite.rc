@@ -10,11 +10,18 @@ written for cylc version = 7.x
 
  # import or loader script
 {% from "inputs" import load %}
+{% from "cylc.flow" import LOG %}
 
 # load the contents of the input file
 {% set input_file = 'scales.json' %}
 #{% set input_file = 'inputs.json' %}
-{% set sites = load(environ['CYLC_SUITE_RUN_DIR'] + '/etc/scales.json') %}
+{% do LOG.info(environ['PWD']) %}
+
+{% if 'cylc-run' in environ['PWD'] %}
+  {% set sites = load(environ['CYLC_WORKFLOW_RUN_DIR'] + '/etc/scales.json') %}
+{% else %}
+  {% set sites = './etc/scales.json' %}
+{% endif %}
 
 [scheduling]
   initial cycle point = 20200101
@@ -48,6 +55,6 @@ written for cylc version = 7.x
     script = echo $CYLC_TASK_NAME: Value is "{{value}}"; sleep $(($RANDOM % {{value}}))
   [[{{site}}_collate]]
     script = echo $CYLC_TASK_NAME: Value is "{{value}}"; sleep $(($RANDOM % {{value}}))
-  
+
 
 {% endfor %}
