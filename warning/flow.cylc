@@ -9,15 +9,10 @@ Toy example of getting the scheduler to email you a warning if:
 written for cylc version = 7.x
 tested with cylc version = 7.8.7
 
-[cylc]
-    # Avoid Cylc Rolling it all up into 1 email.
-    task event mail interval = PT1S
-
 [scheduling]
     initial cycle point = 1066
-    [[dependencies]]
-        [[[R1]]]
-            graph = example_from_docs & python_call_to_cylc_message
+    [[graph]]
+        R1 = example_from_docs & python_call_to_cylc_message
 
 [runtime]
     [[root]]

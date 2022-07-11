@@ -6,11 +6,11 @@ be run and can be passed environment variables.
 """
 written for cylc version = 8.x
 
-[cylc]
+[scheduler]
     UTC mode = True
 
 [scheduling]
-    [[dependencies]]
+    [[graph]]
         R1 = Quokka => Numbat
 
 
@@ -23,6 +23,6 @@ written for cylc version = 8.x
     [[Numbat]]
         [[[environment]]]
             whom = Numbat
-        
+
 
 

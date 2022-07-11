@@ -13,34 +13,31 @@ Contains 2 tasks:
 written for cylc version = 7.x
 test with cylc version = 7.8.11
 
-[cylc]
+[scheduler]
     UTC mode = True
 
 [scheduling]
     cycling mode = integer
     initial cycle point = 1
 
-    [[dependencies]]
-        [[[R1]]]
-            graph = get_data => do_stuff => tell_me_what_resources_i_used
+    [[graph]]
+        R1 = get_data => do_stuff => tell_me_what_resources_i_used
 
 
 [runtime]
     [[get_data]]
         script = data_getter   # in $PWD/bin/data_getter or just write a script
-        [[[job]]]
-            batch system = slurm
-            execution time limit = PT6H   # Replaces directive --time
-            execution retry delays = 3*PT1M  # Where 3 is number of retries.
+        execution time limit = PT6H   # Replaces directive --time
+        execution retry delays = 3*PT1M  # Where 3 is number of retries.
+        platform = spice
         [[[directives]]]
             --mem=3Gn
             --qos=long
 
     [[do_stuff]]
         script = data_handler   # in $PWD/bin/data_getter or just write a script
-        [[[job]]]
-            batch system = slurm
-            execution time limit = PT3H   # Replaces directive --time
+        execution time limit = PT3H   # Replaces directive --time
+        platform = spice
         [[[directives]]]
             --mem=50Gn
             --qos=normal
@@ -57,6 +54,3 @@ test with cylc version = 7.8.11
                 sacct -j "$JOBID" --noheader
             done
         """
-        [[[job]]]
-            # Runs on Cylc Workflow Server:
-            batch system = background

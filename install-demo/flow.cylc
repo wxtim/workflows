@@ -2,9 +2,8 @@
 [scheduling]
     initial cycle point = {{INITIAL_CYCLE_POINT}}
     final cycle point = {{FINAL_CYCLE_POINT}}
-    [[dependencies]]
-        [[[P1Y]]]
-            graph = {{TASK_NAME}}_1 => {{TASK_NAME}}_2
+    [[graph]]
+        P1Y = {{TASK_NAME}}_1 => {{TASK_NAME}}_2
 
 [runtime]
     [[{{TASK_NAME}}_1, {{TASK_NAME}}_2]]
