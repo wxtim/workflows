@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run Cylc Validate on all Cylc 8 workflows
+
+set -eux
+
+cylc version --long
+
+for workflow in */flow.cylc; do
+    dir=$(dirname "$workflow")
+    cylc validate "${PWD}/${dir}"
+done

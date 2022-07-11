@@ -1,3 +1,0 @@
-title = "An example suite with daily cycling set off by clock triggers"
-title = "Tim's Very basic suite"
-title = "A suite designed to check my understanding of Run-once cycles"
