@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from shlex import split
 from subprocess import run
+import sys
 from typing import Dict
 
 from cylc.flow.config import WorkflowConfig
@@ -44,7 +45,8 @@ class example:
                 self.flowfile,
                 {}
             )
-        except:  # noqa
+        except Exception as exc:  # noqa
+            print(f"failed to parse {self.flowfile} because {exc}", file=sys.stderr)
             pass
         else:
             meta = config.get_config(['meta'])
@@ -62,7 +64,6 @@ examples = [i for i in examples_dir.rglob("*/suite.rc")] + [
 
 
 examples = [example(i) for i in examples]
-
 print(f'| {"Workflow":80} | {"Written With":12} | {"Tested On":12} |\n| {"-"*80} | {"-"*12} | {"-"*12} |')
 for e in examples:
     if not str(e).startswith('| []'):

@@ -1,12 +1,19 @@
 #!/bin/bash
 # Installs a fair few cylc workflows for demo purposes:
 
-ITERATIONS="${1:-1}"
+ITERATIONS="${2:-1}"
+TYPE="${1:-"install"}"
 
-NAME=$(shuf -n1 /usr/share/dict/words)
+NAME=$(shuf -n1 /home/h02/tpilling/words)
 for _ in $(seq 1 "${ITERATIONS}"); do
-    if [[ $((RANDOM % 2)) == 0 ]]; then
-        NAME=$(shuf -n1 /usr/share/dict/words)
+    if [[ "${TYPE}" == "install" ]]; then
+        if [[ $((RANDOM % 2)) == 0 ]]; then
+            NAME=$(shuf -n1 /home/h02/tpilling/words)
+        fi
+        cylc install /home/h02/tpilling/metomi/workflows/gui-demo --workflow-name="${NAME}"
+    else
+        echo "Copy ${NAME} to ~/cylc-src"
+        mkdir "/home/h02/tpilling/cylc-src/${NAME}"
+        cp -r /home/h02/tpilling/metomi/workflows/gui-demo/* "/home/h02/tpilling/cylc-src/${NAME}"
     fi
-    cylc install /home/h02/tpilling/metomi/workflows/gui-demo --workflow-name="${NAME}"
 done
