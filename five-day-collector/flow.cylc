@@ -20,21 +20,17 @@ written for cylc version = 7.x
 allow implicit tasks = True
 
 [scheduling]
-    max active cycle points = 10
-    spawn to max active cycle points = True
     initial cycle point = 20200101T0000Z
-    [[dependencies]]
-        [[[P5D]]]
-            graph = """
-                Kiwi
-                {% for Day in range(1, 6) %}
-                    RuRu[-P{{Day}}D] => Mousekeep
-                {% endfor %}
-            """
-        {% for Day in range(5) %}
-        [[[+P{{Day}}D/P5D]]]
-            graph = Kiwi[-P{{Day}}D] => Pua => RuRu
-        {% endfor %}
+    [[graph]]
+        P5D = """
+            Kiwi
+            {% for Day in range(1, 6) %}
+                RuRu[-P{{Day}}D] => Mousekeep
+            {% endfor %}
+        """
+{% for Day in range(5) %}
+        +P{{Day}}D/P5D = Kiwi[-P{{Day}}D] => Pua => RuRu
+{% endfor %}
 
 [runtime]
     [[root]]

@@ -9,19 +9,16 @@ written for cylc version = 7.x
 [scheduling]
   initial cycle point = 2000
   final cycle point = 2005
-  [[dependencies]]
-    [[[P1Y]]]
-      graph = task_id_123[-P1Y] => task_id_123
-    [[[R1/2002]]]
-      graph = task_id_123[-P1Y] => update_memory_allocation => task_id_123
-    [[[R1/P0Y]]]  # Last Cycle point
-      graph = task_id_123 => tell_me_what_resources_i_used
+  [[graph]]
+    P1Y = task_id_123[-P1Y] => task_id_123
+    R1/2002 = task_id_123[-P1Y] => update_memory_allocation => task_id_123
+    # Last Point
+    R1/P0Y = task_id_123 => tell_me_what_resources_i_used
 
 [runtime]
   [[task_id_123]]
     script = echo "Hello World"
-    [[[job]]]
-      batch system = slurm
+    platform = spice
     [[[directives]]]
       --mem = 4
 

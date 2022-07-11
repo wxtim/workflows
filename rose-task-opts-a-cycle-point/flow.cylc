@@ -10,11 +10,9 @@ written with rose version = 2019.01.5
 [scheduling]
     initial cycle point = 1066
     final cycle point = 1069
-    [[dependencies]]
-        [[[R1]]]
-            graph = myapp_cold
-        [[[P1Y]]]
-            graph = myapp
+    [[graph]]
+        R1 = myapp_cold
+        P1Y = myapp
 
 [runtime]
     [[MYAPP]]

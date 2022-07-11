@@ -14,9 +14,8 @@ description = """
 
 [scheduling]
     initial cycle point = 2020
-    [[dependencies]]
-        [[[R1]]]
-            graph = Info & RemoveInPreScript & RemoveInPython
+    [[graph]]
+        R1 = Info & RemoveInPreScript & RemoveInPython
 
 
 [runtime]

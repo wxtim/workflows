@@ -6,14 +6,13 @@ cycle point.
 """
 written for cylc version = 7.x
 
-[cylc]
+[scheduler]
     UTC mode = True
 
 [scheduling]
     initial cycle point = 19831213T0600Z
     final cycle point = 19831213T1500Z
-    max active cycle points = 24
-    [[dependencies]]
+        [[graph]]
         R1/+PT3H = Numbat[-PT1H] => Startup1 & Startup2 => Startup3
         PT1H = Quokka => Numbat
 
@@ -21,7 +20,7 @@ written for cylc version = 7.x
 [runtime]
     [[MARSUPIALS]]
         script="sleep 3"
-    
+
     [[STARTUP]]
         script = "sleep 45"
 
@@ -36,7 +35,7 @@ written for cylc version = 7.x
 
     [[Quokka]]
         inherit = MARSUPIALS
-        
+
     [[Numbat]]
         inherit = MARSUPIALS
 

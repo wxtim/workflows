@@ -25,18 +25,17 @@ the approaches.
 written for cylc version = 7.x
 test with cylc version = 7.8.11
 
-[cylc]
+[scheduler]
     UTC mode = True
 
 [scheduling]
     initial cycle point = 1066
 
-    [[dependencies]]
-        [[[R1]]]
-            graph = """
-                get_stations_broadcast => process_stations_broadcast
-                get_stations_file => process_stations_file
-            """
+    [[graph]]
+        R1 = """
+            get_stations_broadcast => process_stations_broadcast
+            get_stations_file => process_stations_file
+        """
 
 
 [runtime]
@@ -45,7 +44,9 @@ test with cylc version = 7.8.11
             # Get a list of stations; broadcast the list back to the workflow.
             # You can do the broadcast inside the script.
             STATIONS=$(getstations)
-            echo $STATIONS
+            N_STATIONS=$(python -c "stations=${STATIONS}; print(len(stations.split()))")
+            echo N_STATIONS: $N_STATIONS
+            echo STATIONS: $STATIONS
 
             # Broadcasting like this adds the variable to all tasks:
             cylc broadcast -s "[environment]STATIONS=${N_STATIONS}" "$CYLC_SUITE_NAME"

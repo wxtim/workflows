@@ -6,14 +6,13 @@ be run and can be passed environment variables.
 """
 written for cylc version = 7.x
 
-[cylc]
+[scheduler]
     UTC mode = True
 
 [scheduling]
     initial cycle point = 20200101T0000Z
-    [[dependencies]]
-        [[[R1]]] 
-            graph = Quokka => Numbat
+    [[graph]]
+        R1 = Quokka => Numbat
 
 
 [runtime]
@@ -27,6 +26,6 @@ written for cylc version = 7.x
     [[Numbat]]
         [[[environment]]]
             whom = Numbat
-        
+
 
 
