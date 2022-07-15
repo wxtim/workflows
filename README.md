@@ -24,3 +24,9 @@ You may find these easier to start with than writing a suite from scratch.
 | [Cylc 8] Demo Cylc adding `lib/python` to pythonpath                             | 8.x          |              |
 | Suite daily cycling triggered by clock.                                          | 7.x          |              |
 | Remove Cylc Lib from Path                                                        | 7.8.7        |              |
+
+# Licence
+
+I've licensed this repo under the MIT licence designed to be rather permissive.
+
+If you have comments, thoughts, suggestions &c &c please contact me, or make a PR!
