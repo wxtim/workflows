@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Run Cylc Validate on all Cylc 8 workflows
+
+set -eux
+
+cylc version --long
+
+for workflow in */flow.cylc; do
+    echo "${workflow}"
+    dir=$(dirname "$workflow")
+    name="demo-$(basename "$dir")"
+    cylc validate "${PWD}/${dir}" && \
+    cylc install "${PWD}/${dir}" --workflow-name="${name}" &&\
+    cylc play "$name"
+done
