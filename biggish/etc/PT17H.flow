@@ -1,0 +1,6 @@
+bar => baz=> qux=> manatee=> bishop=> crate=> giraffe=> sedam=> pomegranite
+ADDAMS:succeed-all =>ROBINSON
+
+bar[-PT5H] => bar
+manatee[-PT31H] => manatee
+bishop[-PT7H] => bishop

@@ -1,0 +1,15 @@
+#!jinja2
+[scheduler]
+    allow implicit tasks = true
+
+[scheduling]
+    initial cycle point = 1900
+    [[graph]]
+{% for i in [5, 7, 13, 17, 23, 31] %}
+
+        PT{{i}}H = '''
+    {% include 'etc/PT%sH.flow' % i %}
+        '''
+{% endfor %}
+
+{% include 'etc/runtime.cylc' %}

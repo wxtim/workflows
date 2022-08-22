@@ -1,0 +1,99 @@
+[runtime]
+[[ADDAMS]]
+[[FLINTSTONE]]
+[[ROBINSON]]
+    [[foo]]
+        script = sleep 10
+        platform = exz
+        inherit = ADDAMS
+
+    [[bar]]
+        script = sleep 5
+        platform = xc
+        inherit = ADDAMS
+
+    [[baz]]
+        script = sleep 25
+        platform = spice-dirty
+        inherit = ADDAMS
+
+    [[qux]]
+        script = sleep 20
+        platform = vld398
+        inherit = ADDAMS
+
+    [[tapir]]
+        script = sleep 15
+        platform = xcs
+        inherit = ADDAMS
+
+    [[manatee]]
+        script = sleep 24
+        platform = vld398
+        inherit = ROBINSON
+
+    [[knight]]
+        script = sleep 20
+        platform = vld398
+        inherit = FLINTSTONE
+
+    [[bishop]]
+        script = sleep 11
+        platform = spice-dirty
+        inherit = ROBINSON
+
+    [[rook]]
+        script = sleep 16
+        platform = spice-dirty
+        inherit = ROBINSON
+
+    [[crate]]
+        script = sleep 23
+        platform = exz
+        inherit = ROBINSON
+
+    [[giraffe]]
+        script = sleep 15
+        platform = xcs-bg
+        inherit = ROBINSON
+
+    [[enterprise]]
+        script = sleep 19
+        platform = xc-bg
+        inherit = FLINTSTONE
+
+    [[angiosperm]]
+        script = sleep 24
+        platform = xcs
+        inherit = FLINTSTONE
+
+    [[ocolot]]
+        script = sleep 25
+        platform = xcs
+        inherit = FLINTSTONE
+
+    [[sedam]]
+        script = sleep 6
+        platform = spice
+        inherit = ROBINSON
+
+    [[parsley]]
+        script = sleep 15
+        platform = spice
+        inherit = ROBINSON
+
+    [[hummus]]
+        script = sleep 5
+        platform = els055
+        inherit = FLINTSTONE
+
+    [[pomegranite]]
+        script = sleep 11
+        platform = xc
+        inherit = FLINTSTONE
+
+    [[spider]]
+        script = sleep 9
+        platform = spice
+        inherit = FLINTSTONE
+
