@@ -1,0 +1,27 @@
+#!jinja2
+# Set this to empty to test the Cycling
+{% CLOCKTRIGGER = '@wall_clock =>' %}
+
+[scheduling]
+    initial cycle point = now
+
+    [[graph]]
+        # Run a task every 5 minutes starting with 2 minutes after the hour
+        R/T0002/PT5M = {{CLOCKTRIGGER}} frequent_task
+        # Run a task every hour at 33 minutes past the hour
+        R/T0033/PT1H = {{CLOCKTRIGGER}} hourly_task
+        # Run a task every day at 0420
+        R/T0420/P1D = {{CLOCKTRIGGER}} daily_task
+        # every week at 1300 starting from 1st day of the month
+        R/01T1300/P1W = {{CLOCKTRIGGER}} weekly_task
+        # Every month starting from 1200 on the 15th
+        R/15T1200/P1M = {{CLOCKTRIGGER}} monthly_task
+
+[runtime]
+    [[frequent_task]]
+        script = "hello_world.sh"
+    [[hourly_task]]
+        script = "hello_world.py"
+    [[daily_task]]
+    [[weekly_task]]
+    [[monthly_task]]
