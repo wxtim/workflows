@@ -1,4 +1,6 @@
-foo => baz=> tapir=> manatee=> rook=> ocolot=> parsley=> hummus
-ADDAMS:succeed-all =>FLINTSTONE
+foo => bar=> bishop=> rook=> giraffe=> enterprise=> angiosperm=> parsley=> hummus
+ADDAMS:succeed-all =>ROBINSON
 
-rook[-PT31H] => rook
+giraffe[-PT31H] => giraffe
+parsley[-PT17H] => parsley
+hummus[-PT7H] => hummus
