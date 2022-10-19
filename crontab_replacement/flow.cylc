@@ -1,6 +1,11 @@
 #!jinja2
 # Set this to empty to test the Cycling
-{% set CLOCKTRIGGER = "@wall_clock =>" %}
+{% set CLOCKTRIGGER = "@wall_clock =>" %}    # As if it were Cron
+# {% set CLOCKTRIGGER = "" %}                # Arbitrary cycling for testing
+
+[meta]
+title = "Crontab replaces"
+
 
 [scheduling]
     initial cycle point = now

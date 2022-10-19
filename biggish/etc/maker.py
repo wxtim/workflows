@@ -13,13 +13,11 @@ TASK_SCRIPTS = [
 TASK_PLATFORMS = [
     'localhost',
     'spice',
-    'xc',
-    'xc-bg',
-    'xcs',
-    'xcs-bg',
     'spice-dirty',
-    'vld398',
-    'els055'
+    'mymachine',
+    'hpc1',
+    'hpc2',
+    'hpc2A-bg'
 ]
 
 

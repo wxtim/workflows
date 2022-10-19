@@ -1,6 +1,8 @@
-bar => qux=> manatee=> crate=> angiosperm=> sedam=> hummus=> pomegranite
+baz => qux=> tapir=> knight=> bishop=> rook=> giraffe=> angiosperm=> ocolot=> sedam=> pomegranite
 ADDAMS:succeed-all =>FLINTSTONE
 
-sedam[-PT31H] => sedam
-hummus[-PT13H] => hummus
-pomegranite[-PT13H] => pomegranite
+baz[-PT13H] => baz
+giraffe[-PT17H] => giraffe
+angiosperm[-PT17H] => angiosperm
+sedam[-PT7H] => sedam
+pomegranite[-PT7H] => pomegranite
