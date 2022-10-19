@@ -39,11 +39,10 @@ def get_desc(data, title, path):
     try:
         descriptions = list(
             re.finditer(RE_DESCRIPTION, data, re.MULTILINE | re.DOTALL))
+        desc = descriptions[0].groups()[0]
     except IndexError:
         desc = f"[N.B.] Suite {title} does not have a description."
         print(f'did not find description in {path}')
-    else:
-        desc = descriptions[0].groups()[0]
     desc += '\n'
     return desc
 
@@ -118,7 +117,8 @@ def identify_workflows(path):
     Args:
         path(Path): Path to search.
     """
-    return path.glob('*/flow.cylc') and path.glob('*/suite.rc')
+    yield from path.glob('*/flow.cylc')
+    yield from path.glob('*/suite.rc')
 
 
 def main():

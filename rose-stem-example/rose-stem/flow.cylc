@@ -1,0 +1,7 @@
+#!jinja2
+[scheduler]
+    allow implicit tasks = Tre
+[scheduling]
+    initial cycle point = 1065
+    [[graph]]
+        R1 = foo

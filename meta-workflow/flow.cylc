@@ -1,0 +1,38 @@
+#!jinja2
+[meta]
+    title = Demonstrate using cylc play -t
+    description = """
+        This workflow contains two workflows, animals and fungi
+        which live largely separate existences.
+
+        If the user plays them using cylc vip then both will
+        be run, but the user can choose to use
+
+        ```
+        cylc vip -t 2612/start_animals
+        cylc vip -t 2710/start_fungi
+        ```
+
+        To effectively run only one workflow.
+    """
+    written for cylc version = 8
+    tested with cylc version = 8.3
+
+[scheduler]
+    allow implicit tasks = True
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 2612
+    # final cycle point = 2612
+    [[graph]]
+        P1Y = """
+            start_all | start_animals[-P1Y] => start_animals
+            start_all | start_fungi[-P1Y] => start_fungi
+            start_animals => elephant => wombat & sloth
+            start_fungi => waxcap & cordyceps => yeast => amanita
+        """
+
+[runtime]
+    [[root]]
+        script = sleep 7

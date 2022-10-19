@@ -6,7 +6,7 @@ stats, or perhaps just housekeeping).
 
 It also sets `max active cycle points` and `spawn to max active
 cycle points` so that we can run lots of these days in paralell.
-Be aware that scaled up this may cause problems with Cylc 
+Be aware that scaled up this may cause problems with Cylc
 committing a lot to memory.
 
 Kiwis, RuRu and Pua are animals native to New Zealand.
