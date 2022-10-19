@@ -12,7 +12,7 @@ You may find these easier to start with than writing a suite from scratch.
 | Run once cycles                                                                  | 7.x          |              |
 | Suite daily cycling triggered by clock.                                          | 7.x          |              |
 | Running on SPICE                                                                 | 7.x          |              |
-|                                                                                  |              |              |
+| A large random workflow                                                          | 8.x          | 8.0.3        |
 | [Cylc 8] Demo Cylc adding `lib/python` to pythonpath                             | 8.x          |              |
 | [Cylc 7] Demo Cylc adding `lib/python` to pythonpath                             | 7.x          |              |
 | different Rose app conf                                                          |              |              |
