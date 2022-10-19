@@ -1,6 +1,6 @@
 #!jinja2
 # Set this to empty to test the Cycling
-{% CLOCKTRIGGER = '@wall_clock =>' %}
+{% set CLOCKTRIGGER = "@wall_clock =>" %}
 
 [scheduling]
     initial cycle point = now
