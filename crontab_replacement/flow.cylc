@@ -4,7 +4,12 @@
 # {% set CLOCKTRIGGER = "" %}                # Arbitrary cycling for testing
 
 [meta]
-title = "Crontab replaces"
+title = "Crontab replacement examples"
+description = """
+A workflow demonstrating how Cylc might be used instead of Cron.
+"""
+written for cylc version = 8.0.x
+tested with cylc version = 8.0.3
 
 
 [scheduling]

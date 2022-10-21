@@ -1,10 +1,11 @@
 [meta]
-title = Suite daily cycling triggered by clock."
-description = """
-If you want to run a set of tasks every day on or after
-a certain time this workflow template allows you to do this
-"""
-written for cylc version = 7.x
+    title = Suite daily cycling triggered by clock."
+    description = """
+        If you want to run a set of tasks every day on or after
+        a certain time this workflow template allows you to do this
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.0.3
 
 [scheduler]
     UTC mode = True
