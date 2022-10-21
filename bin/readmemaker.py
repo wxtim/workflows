@@ -47,11 +47,12 @@ def get_desc(data, title, path):
     return desc
 
 
-def get_other_meta(data, regex):
+def get_other_meta(data, regex, path=None):
     """Extract some arbitrary regex"""
     try:
         item = list(re.finditer(regex, data))[0].groups()[0]
     except IndexError:
+        print(f'did not find {regex} in {path}')
         return ''
     else:
         return item
@@ -85,8 +86,8 @@ def build_workflow_readme(path):
 
     return {
         'title': title,
-        'written_for': get_other_meta(data, WRITTEN_FOR),
-        'tested_with': get_other_meta(data, TESTED_WITH),
+        'written_for': get_other_meta(data, WRITTEN_FOR, path),
+        'tested_with': get_other_meta(data, TESTED_WITH, path),
     }
 
 

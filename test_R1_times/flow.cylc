@@ -1,10 +1,11 @@
 [meta]
-title = "Run once cycles"
-description = """
-This suite runs a cycle once, several hours after the initial
-cycle point.
-"""
-written for cylc version = 7.x
+    title = "Run once cycles"
+    description = """
+        This suite runs a cycle once, several hours after the initial
+        cycle point.
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.0.3
 
 [scheduler]
     UTC mode = True
@@ -12,7 +13,7 @@ written for cylc version = 7.x
 [scheduling]
     initial cycle point = 19831213T0600Z
     final cycle point = 19831213T1500Z
-        [[graph]]
+    [[graph]]
         R1/+PT3H = Numbat[-PT1H] => Startup1 & Startup2 => Startup3
         PT1H = Quokka => Numbat
 

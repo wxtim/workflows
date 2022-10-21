@@ -1,2 +1,3 @@
-### 
-[N.B.] Suite  does not have a description.
+### Crontab replacement examples
+A workflow demonstrating how Cylc might be used instead of Cron.
+
