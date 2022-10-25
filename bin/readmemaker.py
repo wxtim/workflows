@@ -44,6 +44,7 @@ def get_desc(data, title, path):
         desc = f"[N.B.] Suite {title} does not have a description."
         print(f'did not find description in {path}')
     desc += '\n'
+    breakpoint()
     return desc
 
 

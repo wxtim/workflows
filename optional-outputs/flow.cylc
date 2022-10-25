@@ -35,9 +35,9 @@ tested with cylc version = 8.0.3
     initial cycle point = 1000
     [[graph]]
         P1Y = """
-            which_computer:machineA? => task_on_machineA
-            which_computer:machineB? => task_on_machineB
-            task_on_machineA | task_on_machineB => follow_on
+            which_computer:machineA? => task_on_machineA?
+            which_computer:machineB? => task_on_machineB?
+            task_on_machineA? | task_on_machineB? => follow_on
 
             copy_ancilliary_data? => follow_on
             copy_ancilliary_data:not_available? => housekeep
@@ -56,27 +56,22 @@ tested with cylc version = 8.0.3
                 cylc message "${CYLC_WORKFLOW_ID}" "${CYLC_TASK_JOB}" "machineB"
             fi
         """
-        platform = {{PLATFORM_AB}}
+        platform = hpc
         [[[outputs]]]
             machineA = machineA
             machineB = machineB
 
     [[copy_ancilliary_data]]
-        script = """
-            # Simulate expected lack of date 1 in 6 runs
+        script = some-script.py
 
-            sleep 10
-            if [[ $((RANDOM % 6)) == 0 ]]; then
-                cylc message "${CYLC_WORKFLOW_ID}" "${CYLC_TASK_JOB}" "not_available"
-            fi
-        """
         [[[outputs]]]
+            # Tell cylc to listen for this message - it's an output.
             not_available = not_available
 
 
     [[task_on_machineA, task_on_machineB, follow_on, housekeep]]
         script = sleep 10
     [[task_on_machineA]]
-        platform = {{PLATFORM_A}}
+        platform = hpc1
     [[task_on_machineB]]
-        platform = {{PLATFORM_B}}
+        platform = hpc2
