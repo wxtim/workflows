@@ -6,14 +6,17 @@ import argparse
 from pathlib import Path
 import re
 from glob import glob
+import logging
 from subprocess import run
 from shlex import split
+
 
 RE_DESCRIPTION = r"description\s?=\s?[\"']{1,3}\n?(.+?)(?=[\"']{1,3})"
 RE_TITLE = r"title\s?=\s?[\"']?(.+?)(?=[\"'\n])"
 WRITTEN_FOR = r"written for cylc.*\s=\s(.*)"
-TESTED_WITH = r"teste?d? with cylc\s?v?e?r?s?i?o?n?\s?=\s?(.*)"
+TESTED_WITH = r"teste?d? with cylc\sversion?\s?=\s?(.*)"
 META_TABLE_TEMPLATE = '| {title:80} | {written_for:12} | {tested_with:12} |\n'
+LINK_STUB='https://github.com/wxtim/workflows/tree/cylc-8/{flowname}'
 README_STUB = '''
 # Tim's simple Cylc Examples
 
@@ -24,6 +27,41 @@ You may find these easier to start with than writing a suite from scratch.
 
 '''
 
+class CustomFormatter(logging.Formatter):
+
+    grey = "\x1b[38;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+    format = "%(levelname)s - %(message)s"
+
+    FORMATS = {
+        logging.DEBUG: grey + format + reset,
+        logging.INFO: grey + format + reset,
+        logging.WARNING: yellow + format + reset,
+        logging.ERROR: red + format + reset,
+        logging.CRITICAL: bold_red + format + reset
+    }
+
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
+
+# create logger with 'spam_application'
+LOG = logging.getLogger("ReadmeMaker")
+LOG.setLevel(logging.DEBUG)
+
+# create console handler with a higher log level
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+ch.setFormatter(CustomFormatter())
+
+LOG.addHandler(ch)
+
+
 
 def get_title(data, path):
     """Extract a Cylc Meta title using Regexes"""
@@ -31,7 +69,7 @@ def get_title(data, path):
         title = list(re.finditer(RE_TITLE, data, re.MULTILINE))[0].groups()[0]
         return title
     except IndexError:
-        print(f'did not find title in {path}')
+        logging.warning(f'did not find title in {path}')
         return ''
 
 
@@ -42,9 +80,8 @@ def get_desc(data, title, path):
         desc = descriptions[0].groups()[0]
     except IndexError:
         desc = f"[N.B.] Suite {title} does not have a description."
-        print(f'did not find description in {path}')
+        LOG.warning(f'did not find description in {path}')
     desc += '\n'
-    breakpoint()
     return desc
 
 
@@ -53,7 +90,7 @@ def get_other_meta(data, regex, path=None):
     try:
         item = list(re.finditer(regex, data))[0].groups()[0]
     except IndexError:
-        print(f'did not find {regex} in {path}')
+        LOG.warning(f'did not find {regex} in {path}')
         return ''
     else:
         return item
@@ -85,8 +122,12 @@ def build_workflow_readme(path):
     with open(path.parent / 'README.md', 'w+') as fh:
         fh.write(readme)
 
+
+    link = LINK_STUB.format(flowname=path.parent.name)
+    desc = f'**[🔗]({link})** {title}'
+
     return {
-        'title': title,
+        'title': desc,
         'written_for': get_other_meta(data, WRITTEN_FOR, path),
         'tested_with': get_other_meta(data, TESTED_WITH, path),
     }
