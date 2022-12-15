@@ -9,7 +9,7 @@ description = """
 A workflow demonstrating how Cylc might be used instead of Cron.
 """
 written for cylc version = 8.0.x
-tested with cylc version = 8.0.3
+tested with cylc version = 8.1.0
 
 
 [scheduling]

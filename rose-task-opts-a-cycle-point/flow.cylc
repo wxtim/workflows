@@ -4,8 +4,9 @@ description="""
 A workflow (suite) demonstating how to use Rose optional configs to run a
 different configuration at different cycle points.
 """
-written with cylc version = 7.8.7
-written with rose version = 2019.01.5
+written for cylc version = 7.8.7
+tested with cylc version = 7.8.7
+tested with rose version = 2019.01.5
 
 [scheduling]
     initial cycle point = 1066
