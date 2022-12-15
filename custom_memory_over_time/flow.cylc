@@ -4,7 +4,8 @@
   description = """
     Change the memory requested for a task halfway through a run.
   """
-written for cylc version = 7.x
+written for cylc version = 8.0
+tested with cylc version = 8.1.0
 
 [scheduling]
   initial cycle point = 2000

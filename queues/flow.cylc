@@ -6,6 +6,8 @@ lfgidsa
 dafdufa
 """
 written for cylc version = 7.x
+tested with cylc version = 8.1.0
+
 
 [task parameters]
     i = 1..42

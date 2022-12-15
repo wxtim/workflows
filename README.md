@@ -41,10 +41,9 @@ If you have comments, thoughts, suggestions &c &c please contact me, or make a P
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/optional-outputs)** Optional outputs | 8.x          | 8.0.3        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/warning)** Have Cylc Send an email when a task uses Cylc Message | 7.x          | 7.8.7        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/return-info)** Passing Station Lists | 7.x          | 7.8.11       |
-| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/shared_utils_cylc7)** [Cylc 7] Demo Cylc adding `lib/python` to pythonpath | 7.x          |              |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/test_R1_times)** Run once cycles | 8.x          | 8.0.3        |
-| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/rose-task-opts-a-cycle-point)** different Rose app conf |              |              |
-| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/custom_memory_over_time)** Change Slurm memory request at a cycle point. | 7.x          |              |
+| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/rose-task-opts-a-cycle-point)** different Rose app conf | 7.8.7        | 7.8.7        |
+| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/custom_memory_over_time)** Change Slurm memory request at a cycle point. | 8.0          | 8.1.0        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/data-retrieve-first)** Data Retrieve & Process Workflow | 7.x          | 7.8.11       |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/five-day-collector)** 5 day batch processing. | 7.x          |              |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/crontab_replacement)** Crontab replacement examples | 8.0.x        | 8.0.3        |

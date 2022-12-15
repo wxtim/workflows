@@ -10,8 +10,8 @@ Contains 2 tasks:
 - tell_me_what_resources_i_used: Optional 3rd task prints the computer cost
   of the first two tasks.
 """
-written for cylc version = 7.x
-test with cylc version = 7.8.11
+written for cylc version = 8.x
+tested with cylc version = 8.1.0
 
 [scheduler]
     UTC mode = True
