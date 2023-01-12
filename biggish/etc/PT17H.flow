@@ -1,4 +1,4 @@
-foo => bar=> baz=> qux=> manatee=> knight=> bishop=> crate=> enterprise=> angiosperm=> parsley=> spider
-ADDAMS:succeed-all =>ROBINSON
+bar => qux=> tapir=> knight=> bishop=> enterprise=> angiosperm=> parsley=> pomegranite
+ADDAMS:succeed-all =>FLINTSTONE
 
-parsley[-PT5H] => parsley
+parsley[-PT7H] => parsley

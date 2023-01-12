@@ -1,3 +1,9 @@
+#!jinja2
+
+{% from 'cylc.flow' import LOG %}
+{% do LOG.info('Tim\'s Simplest Workflow\n   -----------------------') %}
+{% do LOG.warn('This workflow runs for about an hour and cycles somewhat rapidly - it may stress the host.') %}
+
 [meta]
 title = "Simplest Workflow"
 description = """
@@ -14,16 +20,16 @@ test with cylc version = 7.8.11
     initial cycle point = 19831213T0600Z
 
     # final cycle point is entirely optional
-    # final cycle point = 19831213T0600Z
+    # Default value makes the workflow run for about 1 hour:
+    final cycle point = 19840412T0600Z
 
-    # If you don't use this the suite may run VERY fast
     [[graph]]
-        PT1H = Quokka => Numbat => Wambenger
+        {{ CYCLE|default("PT1H", true) }} = Quokka => Numbat => Wambenger
 
 
 [runtime]
     [[MARSUPIALS]]
-        script="sleep 3"
+        script="sleep 10"
 
     [[Quokka]]
         inherit=MARSUPIALS
