@@ -1,5 +1,6 @@
 [meta]
 written for cylc version = 7.8.7
+tested with cylc version = 8.1.0
 compatible with cylc8 = Unlikely, and probably not necessary.
 title = Remove Cylc Lib from Path
 description = """
@@ -11,6 +12,7 @@ description = """
     - Remove in pre-script: Feels more Cylc style.
     - Remove in Python: Feels horrid. Don't do this routinely.
 """
+
 
 [scheduling]
     initial cycle point = 2020

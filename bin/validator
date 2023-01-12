@@ -2,12 +2,17 @@
 
 # Run Cylc Validate on all Cylc 8 workflows
 
-set -eux
+set -eu
 
 cylc version --long
 
 for workflow in */flow.cylc; do
     echo "${workflow}"
     dir=$(dirname "$workflow")
-    cylc validate "${PWD}/${dir}"
+    cylcvars="${dir}"/.cylcvars
+    if [[ -f "${cylcvars}" ]]; then
+        cylc validate "${PWD}/${dir}" --set-file "${cylcvars}"
+    else
+        cylc validate "${PWD}/${dir}"
+    fi
 done
