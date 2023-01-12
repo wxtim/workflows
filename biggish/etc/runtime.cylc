@@ -3,97 +3,97 @@
 [[FLINTSTONE]]
 [[ROBINSON]]
     [[foo]]
-        script = sleep 11
-        platform = hpc2
+        script = sleep 9
+        platform = localhost
         inherit = ADDAMS
 
     [[bar]]
         script = sleep 13
-        platform = hpc2A-bg
+        platform = localhost
         inherit = ADDAMS
 
     [[baz]]
-        script = sleep 8
-        platform = hpc2
+        script = sleep 24
+        platform = localhost
         inherit = ADDAMS
 
     [[qux]]
-        script = sleep 20
-        platform = spice-dirty
+        script = sleep 10
+        platform = localhost
         inherit = ADDAMS
 
     [[tapir]]
-        script = sleep 17
-        platform = spice
+        script = sleep 23
+        platform = localhost
         inherit = ADDAMS
 
     [[manatee]]
-        script = sleep 12
-        platform = hpc2
+        script = sleep 15
+        platform = localhost
         inherit = FLINTSTONE
 
     [[knight]]
-        script = sleep 25
-        platform = hpc2A-bg
+        script = sleep 8
+        platform = localhost
         inherit = ROBINSON
 
     [[bishop]]
-        script = sleep 23
-        platform = mymachine
+        script = sleep 12
+        platform = localhost
         inherit = ROBINSON
 
     [[rook]]
-        script = sleep 20
-        platform = spice
+        script = sleep 22
+        platform = localhost
         inherit = FLINTSTONE
 
     [[crate]]
         script = sleep 17
-        platform = hpc2A-bg
-        inherit = FLINTSTONE
-
-    [[giraffe]]
-        script = sleep 11
         platform = localhost
         inherit = FLINTSTONE
 
-    [[enterprise]]
+    [[giraffe]]
         script = sleep 9
         platform = localhost
         inherit = ROBINSON
 
+    [[enterprise]]
+        script = sleep 13
+        platform = localhost
+        inherit = FLINTSTONE
+
     [[angiosperm]]
-        script = sleep 10
-        platform = hpc2
+        script = sleep 13
+        platform = localhost
         inherit = FLINTSTONE
 
     [[ocolot]]
-        script = sleep 13
-        platform = spice
-        inherit = FLINTSTONE
+        script = sleep 14
+        platform = localhost
+        inherit = ROBINSON
 
     [[sedam]]
-        script = sleep 21
-        platform = hpc2A-bg
-        inherit = ROBINSON
+        script = sleep 8
+        platform = localhost
+        inherit = FLINTSTONE
 
     [[parsley]]
         script = sleep 7
-        platform = mymachine
+        platform = localhost
         inherit = FLINTSTONE
 
     [[hummus]]
-        script = sleep 17
-        platform = hpc2A-bg
-        inherit = ROBINSON
-
-    [[pomegranite]]
-        script = sleep 11
-        platform = hpc1
+        script = sleep 14
+        platform = localhost
         inherit = FLINTSTONE
 
-    [[spider]]
-        script = sleep 21
-        platform = hpc1
+    [[pomegranite]]
+        script = sleep 15
+        platform = localhost
         inherit = ROBINSON
+
+    [[spider]]
+        script = sleep 12
+        platform = localhost
+        inherit = FLINTSTONE
 

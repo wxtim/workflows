@@ -1,6 +1,7 @@
-bar => qux=> tapir=> bishop=> crate=> giraffe=> angiosperm=> pomegranite
+foo => baz=> tapir=> knight=> angiosperm=> hummus=> pomegranite=> spider
 ADDAMS:succeed-all =>FLINTSTONE
 
-bar[-PT13H] => bar
-crate[-PT7H] => crate
-giraffe[-PT13H] => giraffe
+baz[-PT7H] => baz
+knight[-PT5H] => knight
+pomegranite[-PT31H] => pomegranite
+spider[-PT7H] => spider
