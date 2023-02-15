@@ -1,6 +1,5 @@
-foo => baz=> qux=> rook=> crate=> giraffe=> enterprise=> angiosperm=> sedam=> parsley=> hummus
+baz => manatee=> bishop=> giraffe=> enterprise=> ocolot=> pomegranite
 ADDAMS:succeed-all =>FLINTSTONE
 
-foo[-PT17H] => foo
-qux[-PT5H] => qux
-angiosperm[-PT5H] => angiosperm
+baz[-PT5H] => baz
+enterprise[-PT31H] => enterprise

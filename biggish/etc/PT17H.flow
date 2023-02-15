@@ -1,4 +1,7 @@
-bar => qux=> tapir=> knight=> bishop=> enterprise=> angiosperm=> parsley=> pomegranite
+bar => baz=> qux=> tapir=> manatee=> knight=> bishop=> rook=> giraffe=> angiosperm=> ocolot
 ADDAMS:succeed-all =>FLINTSTONE
 
-parsley[-PT7H] => parsley
+baz[-PT5H] => baz
+bishop[-PT7H] => bishop
+rook[-PT13H] => rook
+ocolot[-PT23H] => ocolot
