@@ -5,12 +5,17 @@
 {% do LOG.warn('This workflow runs for about an hour and cycles somewhat rapidly - it may stress the host.') %}
 
 [meta]
-title = "Simplest Workflow"
-description = """
-Should give you just enough to get going
-"""
-written for cylc version = 7.x
-test with cylc version = 7.8.11
+    title = "Simplest Workfløw"
+    description = """
+    Should give you just enough to get going
+
+    ## CLI args
+
+    * `-S 'CYCLE="<isodatetime recurrence>"'` allows you to set the cycling.
+    default is "PT1H"
+    """
+    written for cylc version = 7.x
+    test with cylc version = 7.8.11
 
 [scheduler]
     UTC mode = True
@@ -21,23 +26,25 @@ test with cylc version = 7.8.11
 
     # final cycle point is entirely optional
     # Default value makes the workflow run for about 1 hour:
-    final cycle point = 19840412T0600Z
+    final cycle point = 19840412T1200Z
 
     [[graph]]
-        {{ CYCLE|default("PT1H", true) }} = Quokka => Numbat => Wambenger
+        {{ CYCLE|default("PT1H", true) }} = Qöokka => Numbat => Wambenger:submit-any => foo
 
 
 [runtime]
-    [[MARSUPIALS]]
-        script="sleep 10"
+    [[foo]]
+    [[MARSUPIaLS]]
+        script= sleep {{ SLEEP | default(3, true) }}
 
-    [[Quokka]]
-        inherit=MARSUPIALS
+    [[Qöokka]]
+        inherit=MARSUPIaLS
+        script = sleep 3
 
     [[Numbat]]
-        inherit=MARSUPIALS
+        inherit=MARSUPIaLS
 
     [[Wambenger]]
-        inherit=MARSUPIALS
+        inherit=MARSUPIaLS
 
 

@@ -1,7 +1,4 @@
-foo => qux=> knight=> rook=> crate=> ocolot=> parsley=> hummus=> pomegranite
+foo => baz=> qux=> tapir=> manatee=> rook=> crate=> sedam
 ADDAMS:succeed-all =>FLINTSTONE
 
-knight[-PT7H] => knight
-crate[-PT7H] => crate
-parsley[-PT23H] => parsley
-hummus[-PT7H] => hummus
+foo[-PT7H] => foo

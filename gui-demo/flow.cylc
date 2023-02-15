@@ -29,6 +29,7 @@ Cylc GUI example
 
     [[task_should_fail_fewer_than_3times]]
         script = fail_and_a_half
+        submission retry delays = PT10S
 
     [[task_should_fail_to_submit]]
         platform = nineandthreequarters

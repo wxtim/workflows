@@ -3,79 +3,79 @@
 [[FLINTSTONE]]
 [[ROBINSON]]
     [[foo]]
-        script = sleep 9
+        script = sleep 8
         platform = localhost
         inherit = ADDAMS
 
     [[bar]]
-        script = sleep 13
+        script = sleep 20
         platform = localhost
         inherit = ADDAMS
 
     [[baz]]
-        script = sleep 24
+        script = sleep 9
         platform = localhost
         inherit = ADDAMS
 
     [[qux]]
-        script = sleep 10
+        script = sleep 5
         platform = localhost
         inherit = ADDAMS
 
     [[tapir]]
-        script = sleep 23
+        script = sleep 9
         platform = localhost
         inherit = ADDAMS
 
     [[manatee]]
-        script = sleep 15
+        script = sleep 18
         platform = localhost
-        inherit = FLINTSTONE
+        inherit = ROBINSON
 
     [[knight]]
-        script = sleep 8
-        platform = localhost
-        inherit = ROBINSON
-
-    [[bishop]]
-        script = sleep 12
-        platform = localhost
-        inherit = ROBINSON
-
-    [[rook]]
-        script = sleep 22
-        platform = localhost
-        inherit = FLINTSTONE
-
-    [[crate]]
         script = sleep 17
         platform = localhost
         inherit = FLINTSTONE
 
+    [[bishop]]
+        script = sleep 17
+        platform = localhost
+        inherit = FLINTSTONE
+
+    [[rook]]
+        script = sleep 16
+        platform = localhost
+        inherit = ROBINSON
+
+    [[crate]]
+        script = sleep 7
+        platform = localhost
+        inherit = FLINTSTONE
+
     [[giraffe]]
-        script = sleep 9
+        script = sleep 19
         platform = localhost
         inherit = ROBINSON
 
     [[enterprise]]
-        script = sleep 13
+        script = sleep 23
         platform = localhost
         inherit = FLINTSTONE
 
     [[angiosperm]]
-        script = sleep 13
-        platform = localhost
-        inherit = FLINTSTONE
-
-    [[ocolot]]
-        script = sleep 14
+        script = sleep 20
         platform = localhost
         inherit = ROBINSON
 
-    [[sedam]]
-        script = sleep 8
+    [[ocolot]]
+        script = sleep 6
         platform = localhost
         inherit = FLINTSTONE
+
+    [[sedam]]
+        script = sleep 7
+        platform = localhost
+        inherit = ROBINSON
 
     [[parsley]]
         script = sleep 7
@@ -83,17 +83,17 @@
         inherit = FLINTSTONE
 
     [[hummus]]
-        script = sleep 14
+        script = sleep 11
         platform = localhost
         inherit = FLINTSTONE
 
     [[pomegranite]]
-        script = sleep 15
+        script = sleep 6
         platform = localhost
-        inherit = ROBINSON
+        inherit = FLINTSTONE
 
     [[spider]]
-        script = sleep 12
+        script = sleep 23
         platform = localhost
         inherit = FLINTSTONE
 

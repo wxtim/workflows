@@ -1,4 +1,5 @@
-foo => qux=> rook=> crate=> giraffe=> enterprise=> ocolot
-ADDAMS:succeed-all =>ROBINSON
+bar => qux=> tapir=> crate=> giraffe=> sedam=> pomegranite=> spider
+ADDAMS:succeed-all =>FLINTSTONE
 
-ocolot[-PT23H] => giraffe
+crate[-PT31H] => crate
+sedam[-PT13H] => sedam

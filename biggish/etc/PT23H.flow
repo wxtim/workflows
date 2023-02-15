@@ -1,7 +1,5 @@
-foo => baz=> tapir=> knight=> angiosperm=> hummus=> pomegranite=> spider
+bar => baz=> manatee=> knight=> rook=> crate=> angiosperm=> sedam=> hummus=> spider
 ADDAMS:succeed-all =>FLINTSTONE
 
-baz[-PT7H] => baz
-knight[-PT5H] => knight
-pomegranite[-PT31H] => pomegranite
-spider[-PT7H] => spider
+sedam[-PT31H] => sedam
+hummus[-PT5H] => hummus
