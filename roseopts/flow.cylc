@@ -1,0 +1,13 @@
+#!jinja2
+[meta]
+NOT_IN_ANY_OPT_CONFS = {{NOT_IN_ANY_OPT_CONFS}}
+ONLY_IN_SUITECONF={{ONLY_IN_SUITECONF}}
+IN_SUITECONF_AND_ENV={{IN_SUITECONF_AND_ENV}}
+IN_ALL_THREE_OPT_CONFS={{IN_ALL_THREE_OPT_CONFS}}
+
+
+[scheduler]
+    allow implicit tasks = true
+[scheduling]
+    [[graph]]
+        R1 = foo
