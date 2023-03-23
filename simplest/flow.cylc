@@ -29,22 +29,21 @@
     final cycle point = 19840412T1200Z
 
     [[graph]]
-        {{ CYCLE|default("PT1H", true) }} = Qöokka => Numbat => Wambenger:submit-any => foo
+        {{ CYCLE|default("PT1H", true) }} = Quokka => Numbat => Wambenger
 
 
 [runtime]
-    [[foo]]
-    [[MARSUPIaLS]]
+    [[MARSUPIALS]]
         script= sleep {{ SLEEP | default(3, true) }}
 
-    [[Qöokka]]
-        inherit=MARSUPIaLS
-        script = sleep 3
+    [[Quokka]]
+        inherit=MARSUPIALS
+        script = sleep 15
 
     [[Numbat]]
-        inherit=MARSUPIaLS
+        inherit=MARSUPIALS
 
     [[Wambenger]]
-        inherit=MARSUPIaLS
+        inherit=MARSUPIALS
 
 
