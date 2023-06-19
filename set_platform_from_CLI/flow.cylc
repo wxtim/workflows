@@ -14,7 +14,7 @@
     """
 written for cylc = 8.x
 
-{# Set default value for platform #}
+{# Ensure that workflow will not fail without platfom set #}
 {% set platform = platform | default("spice") %}
 
 [scheduling]
