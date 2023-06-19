@@ -6,7 +6,11 @@
 
         e.g.
 
-        cylc vip -s 'platform="cinnamon"'
+        # Look at this config
+        $ cylc config .
+
+        # Validate, install and play this config
+        $ cylc vip -s 'platform="cinnamon"'
     """
 written for cylc = 8.x
 
