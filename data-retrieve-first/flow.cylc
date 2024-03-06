@@ -1,6 +1,20 @@
 [meta]
 title = "Data Retrieve & Process Workflow"
 description = """
+Use Cylc to manage tasks with different resource needs:
+
++----------+----------+--------------+
+| Resource | Get Data | Analyse Data |
++----------+----------+--------------+
+| Memory   |          | 📈            |
++----------+----------+--------------+
+| CPU      |          | 📈            |
++----------+----------+--------------+
+| IO       | 📈        |              |
++----------+----------+--------------+
+| Time?    | 📈        |              |
++----------+----------+--------------+
+
 Contains 2 tasks:
 
 - data_getter: Does not need much memory, but requires a longer timeout limit.
