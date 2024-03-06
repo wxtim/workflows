@@ -1,4 +1,7 @@
 #!jinja2
+{% from 'cylc.flow' import LOG %}
+{% do LOG.info('Tim\'s GUI Demo Workflow') %}
+{% do LOG.warn('This workflow runs forever and cycles somewhat rapidly - it may stress the host.') %}
 
 [meta]
 description = """
@@ -26,6 +29,7 @@ Cylc GUI example
 
     [[task_should_fail_fewer_than_3times]]
         script = fail_and_a_half
+        submission retry delays = PT10S
 
     [[task_should_fail_to_submit]]
         platform = nineandthreequarters

@@ -1,4 +1,7 @@
-foo => bar=> baz=> qux=> manatee=> knight=> bishop=> crate=> enterprise=> angiosperm=> parsley=> spider
-ADDAMS:succeed-all =>ROBINSON
+bar => baz=> qux=> tapir=> manatee=> knight=> bishop=> rook=> giraffe=> angiosperm=> ocolot
+ADDAMS:succeed-all =>FLINTSTONE
 
-parsley[-PT5H] => parsley
+baz[-PT5H] => baz
+bishop[-PT7H] => bishop
+rook[-PT13H] => rook
+ocolot[-PT23H] => ocolot

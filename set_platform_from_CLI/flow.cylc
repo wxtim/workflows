@@ -1,0 +1,29 @@
+#!jinja2
+[meta]
+    description = """
+        How to use a command line variable to
+        choose compute platform.
+
+        e.g.
+
+        # Look at this config
+        $ cylc config .
+
+        # Validate, install and play this config
+        $ cylc vip -s 'platform="cinnamon"'
+    """
+written for cylc = 8.x
+
+{# Ensure that workflow will not fail without platfom set #}
+{% set platform = platform | default("spice") %}
+
+[scheduling]
+    initial cycle point = 1900
+    [[graph]]
+        P1Y = trivial_or_io_bound => heavy_compute
+
+[runtime]
+    [[trivial_or_io_bound]]
+        platform = suitable_host  {# or {{ ROSE_ORIG_HOST }} #}
+    [[heavy_compute]]
+        platform = {{ platform }}

@@ -1,7 +1,5 @@
-qux => manatee=> knight=> bishop=> rook=> crate=> giraffe=> ocolot=> sedam=> parsley=> hummus
-ADDAMS:succeed-all =>ROBINSON
+baz => manatee=> bishop=> giraffe=> enterprise=> ocolot=> pomegranite
+ADDAMS:succeed-all =>FLINTSTONE
 
-manatee[-PT23H] => manatee
-rook[-PT31H] => rook
-giraffe[-PT23H] => giraffe
-hummus[-PT7H] => hummus
+baz[-PT5H] => baz
+enterprise[-PT31H] => enterprise

@@ -1,4 +1,5 @@
-baz => tapir=> manatee=> knight=> ocolot=> parsley=> spider
-ADDAMS:succeed-all =>ROBINSON
+bar => baz=> knight=> rook=> enterprise=> sedam=> parsley=> hummus=> spider
+ADDAMS:succeed-all =>FLINTSTONE
 
-foo[-PT13H] => tapir
+rook[-PT17H] => rook
+parsley[-PT5H] => parsley

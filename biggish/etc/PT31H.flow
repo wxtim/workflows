@@ -1,6 +1,5 @@
-foo => bar=> bishop=> rook=> giraffe=> enterprise=> angiosperm=> parsley=> hummus
-ADDAMS:succeed-all =>ROBINSON
+bar => qux=> tapir=> crate=> giraffe=> sedam=> pomegranite=> spider
+ADDAMS:succeed-all =>FLINTSTONE
 
-giraffe[-PT31H] => giraffe
-parsley[-PT17H] => parsley
-hummus[-PT7H] => hummus
+crate[-PT31H] => crate
+sedam[-PT13H] => sedam
