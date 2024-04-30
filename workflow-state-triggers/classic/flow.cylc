@@ -1,0 +1,34 @@
+[meta]
+    title = the first workflow of which others are triggered
+    description = """
+        A demo of using `cylc workflow-state` in other workflows.
+
+        This workflow triggers a series of events, if and only
+        if, the year is 1066.
+
+        The test `is_1066` is totally trivial, and doesn't really
+        need to reach another flow, but it does for the sake of example.
+    """
+    written for cylc = 8
+    tested with cylc = 8.3.0.dev@f41602137
+
+[scheduler]
+    allow implicit tasks = true
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 1066
+    [[graph]]
+        R1 = is_1066:succeeded? => arrow => Harold => eye
+
+[runtime]
+    [[is_1066]]
+        script = """
+            cylc workflow-state \
+                first \
+                --point 1065 \
+                --status succeeded \
+                --task anglo_saxon_chronicle
+        """
+        [[[meta]]]
+            description = The chronicle for 1065 has been written.
