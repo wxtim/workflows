@@ -11,10 +11,16 @@
 
 [scheduler]
     allow implicit tasks = true
-    cycle point format = %Y
+    # cycle point format = %Y
 
 [scheduling]
     initial cycle point = 1060
     final cycle point = 1070
     [[graph]]
         P1Y = anglo_saxon_chronicle
+
+[runtime]
+    [[anglo_saxon_chronicle]]
+        script = cylc message -- hardrada
+        [[[outputs]]]
+            hardrada = 'Six foot of English ground'

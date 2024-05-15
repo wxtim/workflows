@@ -1,15 +1,20 @@
 #!jinja2
-# Set this to empty to test the Cycling
-{% set CLOCKTRIGGER = "@wall_clock =>" %}    # As if it were Cron
-# {% set CLOCKTRIGGER = "" %}                # Arbitrary cycling for testing
+{% if TEST is defined and TEST == True %}
+    {% set CLOCKTRIGGER = "" %}                # Arbitrary cycling for testing
+{% else %}
+    {% set CLOCKTRIGGER = "@wall_clock =>" %}    # As if it were Cron
+{% endif %}
+
 
 [meta]
-title = "Crontab replacement examples"
-description = """
-A workflow demonstrating how Cylc might be used instead of Cron.
-"""
-written for cylc version = 8.0.x
-tested with cylc version = 8.1.0
+    title = "Crontab replacement examples"
+    description = """
+        A workflow demonstrating how Cylc might be used instead of Cron.
+
+        To run in test mode use ``cylc vip -s 'TEST=True'``
+    """
+    written for cylc version = 8.0.x
+    tested with cylc version = 8.1.0
 
 
 [scheduling]

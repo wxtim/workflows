@@ -13,10 +13,10 @@
 
 [scheduler]
     allow implicit tasks = true
-    cycle point format = %Y
+    # cycle point format = %Y
 
 [scheduling]
-    initial cycle point = 1066
+    # initial cycle point = 1066
     [[graph]]
         R1 = @is_1068 => domesday & tapestry  # It's an embroidery
     [[xtriggers]]

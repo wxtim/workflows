@@ -33,7 +33,7 @@
     initial cycle point = 19831213T0600Z
     final cycle point = 19831213T1200Z
     [[graph]]
-        PT1H = Nutmeg
+        PT1H = Nutmeg & Stretchy
         R1/P0Y = tell_me_what_resources_i_used
 
 
@@ -44,6 +44,28 @@
         [[[directives]]]
             --time = 00:15
             --mem = 128Mn
+
+    [[Stretchy]]
+        script = """
+            if [[ "${CYLC_TASK_TRY_NUMBER}" < 3 ]]; then
+                exit 1
+            else
+                exit 0
+            fi
+        """
+
+        err-script = """
+            LIM=$((CYLC_TASK_TRY_NUMBER * 50))
+            cylc broadcast "${CYLC_WORKFLOW_ID}" \
+                -n "${CYLC_TASK_ID}" \
+                -p "${CYLC_TASK_CYCLE_POINT}" \
+                -s "platform=localhost"
+        """
+        execution time limit = PT5S
+        execution retry delays = 4*PT0S
+        platform = spice
+        [[[meta]]]
+            descript = "Ask for more resources each time it fails."
 
 
     [[tell_me_what_resources_i_used]]

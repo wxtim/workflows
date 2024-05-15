@@ -24,11 +24,7 @@
 [runtime]
     [[is_1066]]
         script = """
-            cylc workflow-state \
-                first \
-                --point 1065 \
-                --status succeeded \
-                --task anglo_saxon_chronicle
+            cylc workflow-state first --task-pointnfvasjkngjan --point 1065 --status succeeded --task anglo_saxon_chronicle --output foo
         """
         [[[meta]]]
             description = The chronicle for 1065 has been written.

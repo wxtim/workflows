@@ -40,8 +40,12 @@ If you have comments, thoughts, suggestions &c &c please contact me, or make a P
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/biggish)** A large random workflow | 8.x          | 8.0.3        |
 =======
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/biggish)** A large random workflow | 8.x          | 8.03         |
+<<<<<<< HEAD
 >>>>>>> 139aa07 (ran readmemaker)
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/simplest)** Simplest Workflow | 7.x          | 7.8.11       |
+=======
+| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/simplest)** Simplest Workflow [![Cylc Checks](https://github.com/wxtim/workflows/actions/workflows/cylc-checks.yml/badge.svg)](https://github.com/wxtim/workflows/actions/workflows/cylc-checks.yml) | 7.x          | 7.8.11       |
+>>>>>>> 9de9a02 (added outlandish param example)
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/optional-outputs)** Optional outputs | 8.x          | 8.0.3        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/warning)** Have Cylc Send an email when a task uses Cylc Message | 7.x          | 7.8.7        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/return-info)** Passing Station Lists | 7.x          | 7.8.11       |
@@ -60,4 +64,15 @@ If you have comments, thoughts, suggestions &c &c please contact me, or make a P
 >>>>>>> a74d71e (update readmemaker and make)
 =======
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/pythonconflict)** Remove Cylc Lib from Path | 7.8.7        | 8.1.0        |
+<<<<<<< HEAD
 >>>>>>> 139aa07 (ran readmemaker)
+=======
+
+
+# License
+
+I've used 0-clause BSD. That should leave you nicely free. If you are not convinced
+that it allows your use case you can and should ask me.
+
+I'd love to know if you find any of this useful.
+>>>>>>> 9de9a02 (added outlandish param example)

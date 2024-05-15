@@ -1,0 +1,35 @@
+#!jinja2
+[meta]
+    title = Fun stuff with jinja2
+    description = """
+        Some interesting graphing based on using functions provided.
+
+        ### Case: Tasks with only fibonnaci numbers as parameters
+
+        Use a function to generate task parameter numbers.
+
+        ### Case: Tasks which occur in prime number cycling
+
+        Cicadas reproduce in prime numbers of years to avoid
+        predators.
+    """
+    created on = 2024-5-14T15:15
+
+[task parameters]
+{% from "func" import fib, prime %}
+    fib = {{ fib(5) }}
+
+[scheduler]
+    allow implicit tasks = True
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 1990
+    [[graph]]
+        # Fibonacci tasks are parametrized.
+        R1 = filius_bonacci<fib>
+
+# Cicada Tasks only run once every N years, where N is a prime number:
+{% for n in prime(10) %}
+        R/1983/P{{n}}Y = cicada_{{n}}[-P{{n}}Y] => cicada_{{n}}
+{% endfor %}
