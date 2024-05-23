@@ -1,6 +1,8 @@
 
 # Tim's simple Cylc Examples
 
+[![Check Multiple Workflows](https://github.com/wxtim/workflows/actions/workflows/generic-cylc-checks.yml/badge.svg)](https://github.com/wxtim/workflows/actions/workflows/generic-cylc-checks.yml)
+
 A small collection of simple suites.
 You may find these easier to start with than writing a suite from scratch.
 
