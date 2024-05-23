@@ -33,5 +33,7 @@ jobs:
         run: |
           if [[ -f ./${{ matrix.workflow }}/rose-suite.conf ]]; then
             awk '$0 ~ "=" {print $0}' ./${{ matrix.workflow }}/rose-suite.conf > cylc.conf
+            cylc validate --color=always ./${{ matrix.workflow }} --set-file=cylc.conf
+          else
+            cylc validate --color=always ./${{ matrix.workflow }}
           fi
-          cylc validate --color=always ./${{ matrix.workflow }} --set-file=cylc.conf
