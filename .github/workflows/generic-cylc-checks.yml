@@ -28,17 +28,17 @@ jobs:
     strategy:
       matrix:
         workflow: [simplest, crontab_replacement]
-      steps:
-        - name: Cylc Lint ${{ matrix.workflow }}
-          run: |
-            cylc lint --color=always ./"${{ matrix.workflow }}"
+    steps:
+      - name: Cylc Lint ${{ matrix.workflow }}
+        run: |
+          cylc lint --color=always ./"${{ matrix.workflow }}"
 
   validate:
     requires: setup
     strategy:
       matrix:
         workflow: [simplest, crontab_replacement]
-      steps:
-        - name: Cylc validate ${{ matrix.workflow }}
-          run: |
-            cylc validate --color=always ./${{ matrix.workflow }}
+    steps:
+      - name: Cylc validate ${{ matrix.workflow }}
+        run: |
+          cylc validate --color=always ./${{ matrix.workflow }}
