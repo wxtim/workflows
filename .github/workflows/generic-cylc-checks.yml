@@ -31,13 +31,13 @@ jobs:
           ls ${HOME}
 
           tree ${HOME}/work
-          cylc lint --color=always ${HOME}/workflows/"${{ matrix.workflow }}"
+          cylc lint --color=always ${HOME}/work/workflows/workflows/"${{ matrix.workflow }}"
 
       - name: Cylc validate ${{ matrix.workflow }}
         run: |
           if [[ -f ${HOME}/workflows/${{ matrix.workflow }}/rose-suite.conf ]]; then
-            awk '$0 ~ "=" {print $0}' ${HOME}/workflows/${{ matrix.workflow }}/rose-suite.conf > cylc.conf
-            cylc validate --color=always ${HOME}/workflows/${{ matrix.workflow }} --set-file=cylc.conf
+            awk '$0 ~ "=" {print $0}' ${HOME}/work/workflows/workflows/${{ matrix.workflow }}/rose-suite.conf > cylc.conf
+            cylc validate --color=always ${HOME}/work/workflows/workflows/${{ matrix.workflow }} --set-file=cylc.conf
           else
-            cylc validate --color=always ${HOME}/workflows/${{ matrix.workflow }}
+            cylc validate --color=always ${HOME}/work/workflows/workflows/${{ matrix.workflow }}
           fi
