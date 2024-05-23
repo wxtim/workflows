@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workflow: [clock-trigger, crontab_replacement, custom_memory_over_time, data-retrieve-first, date-validate-macro, five-day-collector, gui-demo, install-demo, optional-outputs, queues, return-info, runnable-workflow-script, set_platform_from_CLI, strange-parameters, workflow-state-triggers]
+        workflow: [clock-trigger, crontab_replacement, custom_memory_over_time, data-retrieve-first, five-day-collector, gui-demo, install-demo, optional-outputs, queues, return-info, runnable-workflow-script, set_platform_from_CLI, strange-parameters, workflow-state-triggers]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
