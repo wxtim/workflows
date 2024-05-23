@@ -28,7 +28,9 @@ jobs:
 
       - name: Cylc Lint ${{ matrix.workflow }}
         run: |
-          tree ${HOME}
+          ls ${HOME}
+
+          tree ${HOME}/work
           cylc lint --color=always ${HOME}/workflows/"${{ matrix.workflow }}"
 
       - name: Cylc validate ${{ matrix.workflow }}
