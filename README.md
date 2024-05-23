@@ -54,7 +54,7 @@ If you have comments, thoughts, suggestions &c &c please contact me, or make a P
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/custom_memory_over_time)** Change Slurm memory request at a cycle point. | 8.0          | 8.1.0        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/data-retrieve-first)** Data Retrieve & Process Workflow | 8.x          | 8.1.0        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/five-day-collector)** 5 day batch processing. | 8.x          | 8.1.0        |
-| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/crontab_replacement)** Crontab replacement examples | 8.0.x        | 8.1.0        |
+| **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/crontab_replacement)** Crontab replacement examples[![Check Multiple Workflows](https://github.com/wxtim/workflows/actions/workflows/generic-cylc-checks.yml/badge.svg)](https://github.com/wxtim/workflows/actions/workflows/generic-cylc-checks.yml) | 8.0.x        | 8.1.0        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/spice_simplest)** Running on SPICE | 8.x          | 8.0.3        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/shared_utils)** [Cylc 8] Demo Cylc adding `lib/python` to pythonpath | 8.x          | 8.1.0        |
 | **[🔗](https://github.com/wxtim/workflows/tree/cylc-8/queues)** Demonstration of Queues and Parameterization | 7.x          | 8.1.0        |
