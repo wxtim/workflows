@@ -1,0 +1,44 @@
+name: Cylc Checks
+
+on:
+  push:
+    branches: [master, cylc-8]
+  pull_request:
+    branches: [master, cylc-8]
+  workflow_dispatch:
+
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cylc-flow
+
+  lint:
+    requires: setup
+    strategy:
+      matrix:
+        workflow: [simplest, crontab_replacement]
+      steps:
+        - name: Cylc Lint ${{ matrix.workflow }}
+          run: |
+            cylc lint --color=always ./"${{ matrix.workflow }}"
+
+  validate:
+    requires: setup
+    strategy:
+      matrix:
+        workflow: [simplest, crontab_replacement]
+      steps:
+        - name: Cylc validate ${{ matrix.workflow }}
+          run: |
+            cylc validate --color=always ./${{ matrix.workflow }}
