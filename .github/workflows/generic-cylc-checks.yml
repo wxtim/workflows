@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workflow: [simplest, crontab_replacement]
+        workflow: [clock-trigger, crontab_replacement, data-retrieve-first, gui-demo, install-demo, strange-parameters]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
