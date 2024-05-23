@@ -6,5 +6,6 @@ Use a function to generate task parameter numbers.
 ### Case: Tasks which occur in prime number cycling
 Cicadas reproduce in prime numbers of years to avoid
 predators.
-
-![graph of workflow](graph.svg)
+---
+Written for Cylc Version:
+Tested with Cylc Version:

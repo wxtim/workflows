@@ -1,24 +1,24 @@
 #!jinja2
 [meta]
-title = "5 day batch processing."
-description = """
-An example suite showing how Cylc could be used to collect data
-for blocks of 5 days, carry out some processing for each day,
-and bring the workflow back together again (perhaps to do some
-stats, or perhaps just housekeeping).
+    title = "5 day batch processing."
+    description = """
+    An example suite showing how Cylc could be used to collect data
+    for blocks of 5 days, carry out some processing for each day,
+    and bring the workflow back together again (perhaps to do some
+    stats, or perhaps just housekeeping).
 
-It also sets `max active cycle points` and `spawn to max active
-cycle points` so that we can run lots of these days in paralell.
-Be aware that scaled up this may cause problems with Cylc
-committing a lot to memory.
+    It also sets `max active cycle points` and `spawn to max active
+    cycle points` so that we can run lots of these days in paralell.
+    Be aware that scaled up this may cause problems with Cylc
+    committing a lot to memory.
 
-Kiwis, RuRu and Pua are animals native to New Zealand.
-"""
-written for cylc version = 8.x
-tested with cylc version = 8.1.0
+    Kiwis, RuRu and Pua are animals native to New Zealand.
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.1.0
 
 [scheduler]
-allow implicit tasks = True
+    allow implicit tasks = True
 
 [scheduling]
     initial cycle point = 20200101T0000Z

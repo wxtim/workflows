@@ -1,12 +1,12 @@
 [meta]
-title = "Demonstration of Queues and Parameterization"
-description = """
-lfgidsa
+    title = "Demonstration of Queues and Parameterization"
+    description = """
+    Use case shown: You have tasks which you don't want to
+    run too many of at once.
 
-dafdufa
-"""
-written for cylc version = 7.x
-tested with cylc version = 8.1.0
+    """
+    written for cylc version = 7.x
+    tested with cylc version = 8.1.0
 
 
 [task parameters]

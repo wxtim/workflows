@@ -1,17 +1,17 @@
 [meta]
-written for cylc version = 7.8.7
-tested with cylc version = 8.1.0
-compatible with cylc8 = Unlikely, and probably not necessary.
-title = Remove Cylc Lib from Path
-description = """
-    Help a customer with error from importing jinja2.asyncsupport because
-    this was not the version of jinja2 available in the path with the
-    CYLC_DIR/lib included.
+    written for cylc version = 7.8.7
+    tested with cylc version = 8.1.0
+    compatible with cylc8 = Unlikely, and probably not necessary.
+    title = Remove Cylc Lib from Path
+    description = """
+        Help a customer with error from importing jinja2.asyncsupport because
+        this was not the version of jinja2 available in the path with the
+        CYLC_DIR/lib included.
 
-    Two possible approaches shown:
-    - Remove in pre-script: Feels more Cylc style.
-    - Remove in Python: Feels horrid. Don't do this routinely.
-"""
+        Two possible approaches shown:
+        - Remove in pre-script: Feels more Cylc style.
+        - Remove in Python: Feels horrid. Don't do this routinely.
+    """
 
 
 [scheduling]

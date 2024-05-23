@@ -6,13 +6,14 @@
 
         e.g.
 
-        # Look at this config
-        $ cylc config .
+        .. code-block::
+            # Look at this config
+            $ cylc config .
 
-        # Validate, install and play this config
-        $ cylc vip -s 'platform="cinnamon"'
+            # Validate, install and play this config
+            $ cylc vip -s 'platform="cinnamon"'
     """
-written for cylc = 8.x
+    written for cylc = 8.x
 
 {# Ensure that workflow will not fail without platfom set #}
 {% set platform = platform | default("spice") %}

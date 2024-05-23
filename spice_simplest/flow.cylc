@@ -4,10 +4,10 @@
         A template for submission of jobs to a SPICE cluster.
 
         ### Warning
-        > This suite submits very small jobs to a SPICE cluster if you site has one
+        > This WORKFLOW submits very small jobs to a SPICE cluster if you site has one
         > set up.
         >
-        > Jobs this size are NOT a good use of SPICE resources. Use of this suite
+        > Jobs this size are NOT a good use of SPICE resources. Use of this WORKFLOW
         > for purposes other than learning may bring unwanted attention from your
         > system admins.
 
@@ -75,8 +75,8 @@
             # Print column headers
             sacct --user $USER | head -n2
 
-            # Print data for each jobid, which we cull from suite log/job
-            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
+            # Print data for each jobid, which we cull from WORKFLOW log/job
+            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_WORKFLOW_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
                 sacct -j "$JOBID" --noheader
             done
         """

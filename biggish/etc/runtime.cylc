@@ -1,7 +1,7 @@
 [runtime]
-[[ADDAMS]]
-[[FLINTSTONE]]
-[[ROBINSON]]
+    [[ADDAMS]]
+    [[FLINTSTONE]]
+    [[ROBINSON]]
     [[foo]]
         script = sleep 8
         platform = localhost

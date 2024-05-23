@@ -1,13 +1,13 @@
 [meta]
-title = "Have Cylc Send an email when a task uses Cylc Message"
-description = """
-Toy example of getting the scheduler to email you a warning if:
+    title = "Have Cylc Send an email when a task uses Cylc Message"
+    description = """
+    Toy example of getting the scheduler to email you a warning if:
 
-- A bash script uses the `cylc message` command.
-- A python script uses `cylc message` in a subprocess.
-"""
-written for cylc version = 7.x
-tested with cylc version = 7.8.7
+    - A bash script uses the `cylc message` command.
+    - A python script uses `cylc message` in a subprocess.
+    """
+    written for cylc version = 7.x
+    tested with cylc version = 7.8.7
 
 [scheduling]
     initial cycle point = 1066
@@ -22,7 +22,7 @@ tested with cylc version = 7.8.7
         # Bash Script calls Cylc Message.
         script = """
             # Log a warning to job.stdout, send an email notification
-            cylc message -- "${CYLC_SUITE_NAME}" "${CYLC_TASK_JOB}" \
+            cylc message -- "${CYLC_WORKFLOW_ID}" "${CYLC_TASK_JOB}" \
             "WARNING:Uh-oh, something's not right here."
         """
     [[python_call_to_cylc_message]]

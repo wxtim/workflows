@@ -1,11 +1,11 @@
 [meta]
-title = "[Cylc 8] Demo Cylc adding `lib/python` to pythonpath"
-description = """
-Shows how scripts available in lib python are available to
-be run and can be passed environment variables.
-"""
-written for cylc version = 8.x
-tested with cylc version = 8.1.0
+    title = "[Cylc 8] Demo Cylc adding `lib/python` to pythonpath"
+    description = """
+        Shows how scripts available in lib python are available to
+        be run and can be passed environment variables.
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.1.0
 
 
 [scheduler]

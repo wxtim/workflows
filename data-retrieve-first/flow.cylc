@@ -18,11 +18,11 @@
     Contains 2 tasks:
 
     - data_getter: Does not need much memory, but requires a longer timeout limit.
-    may need retrying.
+        may need retrying.
     - data_handler: Needs much more memory, and should only happen if the data
-    getter suceeds.
+        getter suceeds.
     - tell_me_what_resources_i_used: Optional 3rd task prints the computer cost
-    of the first two tasks.
+        of the first two tasks.
     """
     written for cylc version = 8.x
     tested with cylc version = 8.1.0

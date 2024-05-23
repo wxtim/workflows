@@ -1,20 +1,26 @@
-### Running on SPICE
-        A template for submission of jobs to a SPICE cluster.
+# Running on SPICE
 
-        ### Warning
-        > This suite submits very small jobs to a SPICE cluster if you site has one
-        > set up.
-        >
-        > Jobs this size are NOT a good use of SPICE resources. Use of this suite
-        > for purposes other than learning may bring unwanted attention from your
-        > system admins.
+A template for submission of jobs to a SPICE cluster.
 
-        ### How to find out about your jobs SPICE resource usage.
+### Warning
+> This suite submits very small jobs to a SPICE cluster if you site has one
+> set up.
+>
+> Jobs this size are NOT a good use of SPICE resources. Use of this suite
+> for purposes other than learning may bring unwanted attention from your
+> system admins.
 
-        Look at the output of the tell_me_what_resources_i_used task at
-        ~/cylc-run/spice_simplest/log/job/<final cycle point>/tell_me_what_resources_i_used/NN/job.out
+### How to find out about your jobs SPICE resource usage.
 
-        Run this script in a different terminal to see what SPICE is doing:
-        ```
-        now=$(date +%H:%M)
-        export SACCT_FORMAT=
+Look at the output of the tell_me_what_resources_i_used task at
+~/cylc-run/spice_simplest/log/job/<final cycle point>/tell_me_what_resources_i_used/NN/job.out
+
+Run this script in a different terminal to see what SPICE is doing:
+```
+now=$(date +%H:%M)
+export SACCT_FORMAT="jobname%40,jobid%12, reqcpus%4, ncpus%4, reqmem, maxrss, state"
+watch -n 0.3 sacct --units M --user yourusername --starttime "${now}"
+```
+---
+Written for Cylc Version: 8.x
+Tested with Cylc Version: 8.0.3
