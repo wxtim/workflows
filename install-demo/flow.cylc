@@ -10,6 +10,5 @@
         script="sleep {{DUMMY_TASK_SLEEP_TIME}}"
 
 {% if REMOTE == True %}
-        [[[remote]]]
-            host = xcfl01
+        platform = remote
 {% endif %}

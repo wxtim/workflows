@@ -4,9 +4,9 @@
 {% do LOG.warn('This workflow runs forever and cycles somewhat rapidly - it may stress the host.') %}
 
 [meta]
-description = """
-Cylc GUI example
-"""
+    description = """
+        Cylc GUI example
+    """
 
 [scheduling]
     initial cycle point = 1066

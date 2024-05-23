@@ -1,31 +1,31 @@
 [meta]
-title = "Data Retrieve & Process Workflow"
-description = """
-Use Cylc to manage tasks with different resource needs:
+    title = "Data Retrieve & Process Workflow"
+    description = """
+    Use Cylc to manage tasks with different resource needs:
 
-+----------+----------+--------------+
-| Resource | Get Data | Analyse Data |
-+----------+----------+--------------+
-| Memory   |          | 📈            |
-+----------+----------+--------------+
-| CPU      |          | 📈            |
-+----------+----------+--------------+
-| IO       | 📈        |              |
-+----------+----------+--------------+
-| Time?    | 📈        |              |
-+----------+----------+--------------+
+    +----------+----------+--------------+
+    | Resource | Get Data | Analyse Data |
+    +----------+----------+--------------+
+    | Memory   |          | 📈            |
+    +----------+----------+--------------+
+    | CPU      |          | 📈            |
+    +----------+----------+--------------+
+    | IO       | 📈        |              |
+    +----------+----------+--------------+
+    | Time?    | 📈        |              |
+    +----------+----------+--------------+
 
-Contains 2 tasks:
+    Contains 2 tasks:
 
-- data_getter: Does not need much memory, but requires a longer timeout limit.
-  may need retrying.
-- data_handler: Needs much more memory, and should only happen if the data
-  getter suceeds.
-- tell_me_what_resources_i_used: Optional 3rd task prints the computer cost
-  of the first two tasks.
-"""
-written for cylc version = 8.x
-tested with cylc version = 8.1.0
+    - data_getter: Does not need much memory, but requires a longer timeout limit.
+    may need retrying.
+    - data_handler: Needs much more memory, and should only happen if the data
+    getter suceeds.
+    - tell_me_what_resources_i_used: Optional 3rd task prints the computer cost
+    of the first two tasks.
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.1.0
 
 [scheduler]
     UTC mode = True
@@ -63,8 +63,8 @@ tested with cylc version = 8.1.0
             # Print column headers
             sacct --user $USER | head -n2
 
-            # Print data for each jobid, which we cull from suite log/job
-            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_SUITE_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
+            # Print data for each jobid, which we cull from workflow log/job
+            for JOBID in $(grep CYLC_BATCH_SYS_JOB_ID ${CYLC_WORKFLOW_RUN_DIR}/log/job/*/Nutmeg/NN/job.status | awk -F '=' '{print $2}'); do
                 sacct -j "$JOBID" --noheader
             done
         """
