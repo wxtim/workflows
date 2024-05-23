@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workflow: [clock-trigger, crontab_replacement, custom_memory_over_time, data-retrieve-first, five-day-collector, gui-demo, install-demo, optional-outputs, queues, return-info, set_platform_from_CLI, strange-parameters, workflow-state-triggers]
+        workflow: [clock-trigger, crontab_replacement, custom_memory_over_time, data-retrieve-first, five-day-collector, gui-demo, install-demo, optional-outputs, queues, return-info, runnable-workflow-script, set_platform_from_CLI, strange-parameters, workflow-state-triggers]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,13 +28,13 @@ jobs:
 
       - name: Cylc Lint ${{ matrix.workflow }}
         run: |
-          cylc lint --color=always ./"${{ matrix.workflow }}"
+          cylc lint --color=always ${HOME}/workflows/"${{ matrix.workflow }}"
 
       - name: Cylc validate ${{ matrix.workflow }}
         run: |
-          if [[ -f ./${{ matrix.workflow }}/rose-suite.conf ]]; then
-            awk '$0 ~ "=" {print $0}' ./${{ matrix.workflow }}/rose-suite.conf > cylc.conf
-            cylc validate --color=always ./${{ matrix.workflow }} --set-file=cylc.conf
+          if [[ -f ${HOME}/workflows/${{ matrix.workflow }}/rose-suite.conf ]]; then
+            awk '$0 ~ "=" {print $0}' ${HOME}/workflows/${{ matrix.workflow }}/rose-suite.conf > cylc.conf
+            cylc validate --color=always ${HOME}/workflows/${{ matrix.workflow }} --set-file=cylc.conf
           else
-            cylc validate --color=always ./${{ matrix.workflow }}
+            cylc validate --color=always ${HOME}/workflows/${{ matrix.workflow }}
           fi
