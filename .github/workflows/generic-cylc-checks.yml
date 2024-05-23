@@ -24,7 +24,7 @@ jobs:
           pip install cylc-flow
 
   lint:
-    requires: setup
+    needs: setup
     strategy:
       matrix:
         workflow: [simplest, crontab_replacement]
@@ -34,7 +34,7 @@ jobs:
           cylc lint --color=always ./"${{ matrix.workflow }}"
 
   validate:
-    requires: setup
+    needs: setup
     strategy:
       matrix:
         workflow: [simplest, crontab_replacement]
