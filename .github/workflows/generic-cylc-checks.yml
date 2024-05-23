@@ -21,14 +21,17 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v3
-  
+
       - name: Install dependencies
         run: pip install cylc-flow
-    
+
       - name: Cylc Lint ${{ matrix.workflow }}
         run: |
           cylc lint --color=always ./"${{ matrix.workflow }}"
 
       - name: Cylc validate ${{ matrix.workflow }}
         run: |
-          cylc validate --color=always ./${{ matrix.workflow }}
+          if [[ -f ./${{ matrix.workflow }}/rose-suite.conf ]]; then
+            awk '$0 ~ "=" {print $0}' rose-suite.conf > cylc.conf
+          fi
+          cylc validate --color=always ./${{ matrix.workflow }} --set-file=cylc.conf
