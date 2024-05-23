@@ -24,6 +24,7 @@ jobs:
           pip install cylc-flow
 
   lint:
+    runs-on: ubuntu-latest
     needs: setup
     strategy:
       matrix:
@@ -34,6 +35,7 @@ jobs:
           cylc lint --color=always ./"${{ matrix.workflow }}"
 
   validate:
+    runs-on: ubuntu-latest
     needs: setup
     strategy:
       matrix:
