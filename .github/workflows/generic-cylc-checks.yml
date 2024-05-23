@@ -1,4 +1,4 @@
-name: Cylc Checks
+name: Check Multiple Workflows
 
 on:
   push:
