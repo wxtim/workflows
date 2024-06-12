@@ -30,6 +30,6 @@
         R1 = filius_bonacci<fib>
 
 # Cicada Tasks only run once every N years, where N is a prime number:
-{% for n in prime(10) %}
+{% for n in prime(5) %}
         R/1983/P{{n}}Y = cicada_{{n}}[-P{{n}}Y] => cicada_{{n}}
 {% endfor %}

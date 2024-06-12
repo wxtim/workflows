@@ -1,0 +1,85 @@
+#!jinja2
+[meta]
+    title = "Demo optional output funtionality"
+    description = """
+        Advanced use cases for optional outputs:
+
+        1. Graph Branching - Depending upon the output of a task
+           the workflow will go down different paths.
+        2. Pre-finish triggering - A long running task can emit outputs
+           allowing downstream tasks to start sooner.
+
+    n.b. Task messages have been elevated to warning to help you
+    follow events if you choose to run the workflow on the command line.
+    """
+    written for cylc version = "8.x"
+    tested with cylc version = "8.3.0.dev (pre-release copy)"
+
+{% from 'cylc.flow' import LOG %}
+
+{% set base_time = 5 if base_time is not defined %}
+{% set dice = 3 if dice is not defined %}
+
+{% do LOG.warning("`base_time` (used by sleep as a slow-down factor) is set to: " + base_time.__str__()) %}
+{% do LOG.warning("`dice` (used to determine the outcome of multiple_outcomes) has " + dice.__str__() + " sides") %}
+
+[scheduler]
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 1000
+    final cycle point = 1002
+    [[graph]]
+        P1Y = """
+            # Branching execution:
+            multiple_outcomes:red? => red_task?
+            multiple_outcomes:green? => green_task?
+            multiple_outcomes:blue? => blue_task?
+            multiple_outcomes:black? => black_task?
+            multiple_outcomes[-P1Y] => multiple_outcomes
+
+            # Long running task returns interim messages.
+            long_task:increment1 => process_increment1
+            long_task:increment2 => process_increment2
+            long_task => process_increment3
+            long_task[-P1Y] => long_task
+        """
+
+[runtime]
+    [[root]]
+        script = sleep {{base_time}}
+
+    [[MULTIPLE_OUTCOMES, INCREMENT_OUTCOMES]]
+
+    # Create a families for convenince when viewing.
+    [[long_task, process_increment1, process_increment2, process_increment3]]
+        inherit = INCREMENT_OUTCOMES
+    [[multiple_outcomes, red_task, green_task, blue_task, black_task]]
+        inherit = MULTIPLE_OUTCOMES
+
+    [[multiple_outcomes]]
+        script = """
+            for outcome in Gules Vert Azure Sable; do
+                if [[ $((RANDOM % {{dice}})) == 0 ]]; then
+                    sleep {{base_time}}
+                    cylc message -- "WARNING:${outcome}"
+                fi
+            done
+        """
+        [[[outputs]]]
+            red = Gules
+            green = Vert
+            blue = Azure
+            black = Sable
+
+    [[long_task]]
+        script = """
+            for counter in 1 2; do
+                sleep {{base_time}}
+                cylc message -- "WARNING:Increment ${counter} finished"
+            done
+            sleep {{base_time}}
+        """
+        [[[outputs]]]
+            increment1 = 'Increment 1 finished'
+            increment2 = 'Increment 2 finished'

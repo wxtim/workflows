@@ -41,3 +41,4 @@
                 sacct -j "$JOBID" --noheader
             done
         """
+
