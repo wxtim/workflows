@@ -1,23 +1,18 @@
 [meta]
-    title = the first workflow of which others are triggered
+    title = xtrigger
     description = """
-        A demo of using `cylc workflow-state` in other workflows.
-
-        This workflow triggers a series of events, if and only
-        if, the year is 1068.
-
-        It uses xtriggers to achieve this.
+        The most up-to-date way of doing inter-workflow triggering
+        using the provided workflow_state xtrigger.
     """
-    written for cylc = 8
-    tested with cylc = 8.3.0.dev@f41602137
 
 [scheduler]
     allow implicit tasks = true
-    # cycle point format = %Y
+    cycle point format = %Y
 
 [scheduling]
     # initial cycle point = 1066
     [[graph]]
         R1 = @is_1068 => domesday & tapestry  # It's an embroidery
     [[xtriggers]]
+        # is_1068 = workflow_state(workflow_task_id=first//1068/anglo_saxon_chronicle:succeeded, offset=None, alt_cylc_run_dir=None)
         is_1068 = workflow_state('first', task='anglo_saxon_chronicle', point='1068', status='succeeded')

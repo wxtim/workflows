@@ -1,0 +1,36 @@
+[meta]
+    title = "CLI script"
+    description = """
+        Use the CLI ``cylc workflow-state`` command to poll
+        for the state of the "first" workflow.
+    """
+
+[scheduler]
+    allow implicit tasks = true
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 1066
+    [[graph]]
+        R1 = """
+            is_in_normandie:succeeded? => swear_an_oath
+            is_insult:succeeded? => send_insult
+        """
+
+[runtime]
+    [[HAND_ROLLED_WORKFLOW_STATE_TRIGGER]]
+        script = """
+            cylc workflow-state \
+                first//1065/anglo_saxon_chronicle:${OUTPUT} \
+                --max-polls=50
+        """
+
+    [[is_in_normandie]]
+        inherit = HAND_ROLLED_WORKFLOW_STATE_TRIGGER
+        [[[environment]]]
+            OUTPUT="succeeded"
+
+    [[is_insult]]
+        inherit = HAND_ROLLED_WORKFLOW_STATE_TRIGGER
+        [[[environment]]]
+            OUTPUT="hardrada"

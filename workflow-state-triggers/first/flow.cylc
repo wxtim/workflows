@@ -1,26 +1,29 @@
 [meta]
-    title = the first workflow of which others are triggered
+    title = Inter-cycling triggering
     description = """
         A demo of using `cylc workflow-state` in other workflows.
 
         This workflow doesn't do much because it's there for the others
-        to trigger off from.
+        to trigger off from:
     """
-    written for cylc = 8
-    tested with cylc = 8.3.0.dev@f41602137
+    written for cylc version = 8
+    tested with cylc version = 8.3.0.dev
 
 [scheduler]
     allow implicit tasks = true
-    # cycle point format = %Y
+    cycle point format = %Y
 
 [scheduling]
     initial cycle point = 1060
     final cycle point = 1070
     [[graph]]
-        P1Y = anglo_saxon_chronicle
+        P1Y = anglo_saxon_chronicle[-P1Y] => anglo_saxon_chronicle
 
 [runtime]
     [[anglo_saxon_chronicle]]
-        script = cylc message -- hardrada
+        script = """
+                sleep 5
+                cylc message -- "Six foot of English ground"
+            """
         [[[outputs]]]
             hardrada = 'Six foot of English ground'
