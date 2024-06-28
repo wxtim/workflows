@@ -1,0 +1,56 @@
+[meta]
+    title = Pretty much the simplest use case.
+    description = """
+    ## What is the smallest workflow worth converting to Cylc?
+
+    Consider the case where you want to get some data and
+    do some number crunching:
+
+    ```bash
+        #!bin/bash
+        #@supercomputer --time 300
+        #@supercomputer --memory LOTS
+        #@supercomputer --CPU MANY
+
+        get_data.sh
+
+        process_data.sh
+    ```
+
+    Where `get_data.sh` is a data retrieval programme:
+
+    * High IO & Slow
+    * Low Memory and CPU requirements
+    * Might be flaky?
+
+    And `process_data.sh`
+
+    * High memory and CPU
+
+    ## Why use Cylc
+
+    #. Don't ask for resources until pre-reqs are done
+    #. Retry flaky steps
+    #. Using `execution time limit` means that Cylc knows that
+       a task has taken too long even if communications are
+       disrupted.
+    """
+
+[scheduling]
+    [[graph]]
+        R1 = get_data => process_data
+
+[runtime]
+    [[get_data]]
+        script = get_data.sh
+        platform = any_old_server
+        execution retry delays = 4*PT15M, PT1D
+
+    [[process_data]]
+        script = process_data.sh
+        platform = supercomputer
+        # Cylc converts to #@supercomputer --time 300
+        execution time limit = PT5M
+        [[[directives]]]
+            --memory LOTS
+            --CPU MANY
