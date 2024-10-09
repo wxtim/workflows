@@ -1,7 +1,73 @@
 #!jinja2
+[meta]
+    title = "Rose Stem Example"
+    description = """
+    A simple Rose Stem example.
+
+    This Rose Stem test workflow runs tests of foods. Depending on
+    the options it will try baking, frying, grilling or boiling them.
+
+    ## To install this workflow:
+
+    ```bash
+
+        # If you are currently in the directory with the flow.cylc file.
+        cd ..
+
+        rose stem \
+            --source rose-stem-eg=$PWD \
+            --workflow-name throwaway/rose-stem-eg \
+            --groups boil,bake   # fry,grill also available
+
+        # What is the effect of different settings of --group?
+        cylc config throwaway/rose-stem
+    ```
+
+    ### Notes
+
+    n.b. ``rose-stem-eg=$PWD`` give the source a name. Without
+    giving the source a name rose stem will look for a name using
+    Subversion and will fail because this isn't a Subversion repo.
+
+    Without ``--workflow-name`` the workflow will be installed in
+    ``~/cylc-run/rose-stem``. This may well fail if there's a different
+    Rose Stem workflow in that location.
+    """
+    written for cylc version = 8.x
+    tested with cylc version = 8.3.5.dev
+
+
+# Import the Cylc Logging
+{% from "cylc.flow" import LOG %}
+
+# Validate which RUN_NAMES are allowed in our workflow:
+{% set ALLOWED_METHODS = ["boil", "bake", "fry", "grill"] %}
+{% for method in RUN_NAMES %}
+    {{ assert(method in ALLOWED_METHODS, "Method \"" + method + "\" not allowed.") }}
+{% endfor %}
+
 [scheduler]
-    allow implicit tasks = Tre
+    allow implicit tasks = True
+
 [scheduling]
     initial cycle point = 1065
     [[graph]]
-        R1 = foo
+{% if 'fry' in RUN_NAMES %}
+    {% do LOG.warning("Fry enabled") %}
+        R1 = prep_food => fry_food => test_fried_food
+{% endif %}
+
+{% if 'boil' in RUN_NAMES %}
+    {% do LOG.warning("Boil enabled") %}
+        R1 = prep_food => boil_food => test_boiled_food
+{% endif %}
+
+{% if 'bake' in RUN_NAMES %}
+    {% do LOG.warning("Bake enabled") %}
+        R1 = prep_food => bake_food => test_baked_food
+{% endif %}
+
+{% if 'grill' in RUN_NAMES %}
+    {% do LOG.warning("Grill enabled") %}
+        R1 = prep_food => grill_food => test_grilled_food
+{% endif %}
