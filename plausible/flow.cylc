@@ -1,0 +1,69 @@
+#!jinja2
+[meta]
+    description = This is a workflow created by a script..
+    created on = 2024-11-11T13:7
+
+[task parameters]
+    assimilation_job = 1..12
+    forecast_job = 1..12
+    pp_job = 1..6
+
+[scheduler]
+    allow implicit tasks = True
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 1971
+    [[graph]]
+        R1 = install_cold & get_archive_data => start_cycle
+        P1Y = """
+            FORECAST[-P1Y]:succeed-all => start_cycle =>
+                ASSIMILATION:succeed-all => _skip2 => FORECAST
+        """
+        P5Y = """
+            FORECAST[-P4Y]:succeed-all => skip3
+            FORECAST[-P3Y]:succeed-all => skip3
+            FORECAST[-P2Y]:succeed-all => skip3
+            FORECAST[-P1Y]:succeed-all => skip3
+            FORECAST:succeed-all => skip3
+            skip3 => POSTPROC:finish-all => archive => mousekeep
+        """
+
+
+[runtime]
+    [[root]]
+        script = """
+            echo "Hello World!"
+            max=$(((RANDOM % 20) + 1))
+            sleepy=$(((max + 10) - (RANDOM % max)))
+            printf "This script will sleep for %d\n" "$sleepy"
+            cylc message -- "INFO:Sleep $sleepy"
+            sleep "$sleepy"
+            echo "The script has finished sleeping"
+        """
+    [[HOUSEKEEPING]]
+    [[BIG_SLURMJOB]]
+    [[WEE_SLURMJOB]]
+    [[ASSIMILATION]]
+    [[FORECAST]]
+    [[POSTPROC]]
+    [[FLOWCONTROL]]
+
+    [[install_cold, get_archive_data, mousekeep, archive]]
+        inherit = HOUSEKEEPING, WEE_SLURMJOB
+
+    [[assimilation<assimilation_job>]]
+        inherit = ASSIMILATION, WEE_SLURMJOB
+    
+    [[forecast<forecast_job>]]
+        inherit = FORECAST, BIG_SLURMJOB
+
+    [[pp<pp_job>]]
+        inherit = POSTPROC
+
+    [[mousekeep]]
+        inherit = HOUSEKEEPING
+
+    [[start_cycle, skip3, _skip2]]
+        inherit = FLOWCONTROL
+        script = true

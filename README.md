@@ -17,14 +17,18 @@ You may find these easier to start with than writing a suite from scratch.
 
 ## Data Retrieve First
 
-* Demo a very simple pattern where we ensure data has been collected
-  before analysing it.
+Demo a very simple pattern where we ensure data has been collected
+before analysing it.
 
 ## Five Day Collector
 
-* Collect data for a period, then analyse it.
+Collect data for a period, then analyse it.
 
 ## Meta Workflow
 
-* Demonstrates how `cylc play -t` can allow you to store separate flows in
-  one workflow.
+Demonstrates how `cylc play -t` can allow you to store separate flows in
+one workflow.
+
+## Optional Outputs
+
+Designed to show how optional outputs could support a workflow making choices.

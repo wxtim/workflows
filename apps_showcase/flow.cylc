@@ -1,0 +1,43 @@
+[meta]
+    description = """
+        Showcase of interesting apps.
+    """
+
+[scheduler]
+    [[events]]
+        stall handlers = gnome-message stall
+
+[scheduling]
+    [[graph]]
+        R1 = """
+            gnome_message
+        """
+
+[runtime]
+    [[gnome_message]]
+        script = """
+            export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
+            notify-send "Hello World" \
+            "Here's any old message." \
+                --icon face-smile \
+                --app-name "Cylc Notify Demo"
+
+            exit 1
+        """
+        err-script = """
+            export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
+            notify-send "Cylc Task Failed" \
+                "${CYLC_WORKFLOW_ID}//${CYLC_TASK_ID}\nMessage sent by error script." \
+                --icon face-sad \
+                --app-name "Cylc Notify Demo"
+        """
+        [[[meta]]]
+            description = """
+                Send a message to Gnome.
+
+                Probably only works on --host=localhost.
+
+                Hint - list of icons...
+
+                find /usr/share/icons/* -name "*.png"
+            """

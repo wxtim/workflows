@@ -1,21 +1,8 @@
-#!jinja2
-
-{% from 'cylc.flow' import LOG %}
-{% do LOG.info('Tim\'s Simplest Workflow\n   -----------------------') %}
-{% do LOG.warn('This workflow runs for about an hour and cycles somewhat rapidly - it may stress the host.') %}
-
 [meta]
     title = "Simplest Workfløw"
     description = """
     Should give you just enough to get going
-
-    ## CLI args
-
-    * `-S 'CYCLE="<isodatetime recurrence>"'` allows you to set the cycling.
-    default is "PT1H"
     """
-    written for cylc version = 7.x
-    test with cylc version = 7.8.11
 
 [scheduler]
     UTC mode = True
@@ -24,30 +11,14 @@
     # initial cycle point is NOT optional
     initial cycle point = 19831213T0600Z
 
-    # final cycle point is entirely optional
-<<<<<<< HEAD
-    # Default value makes the workflow run for about 1 hour:
-    final cycle point = 19840412T1200Z
-=======
-    final cycle point = 19831214T0600Z
->>>>>>> ac30974 (fi)
-
     [[graph]]
-        {{ CYCLE|default("PT1H", true) }} = Quokka => Numbat => Wambenger
-
+        R1 = cold_start
+        P1D = task
 
 [runtime]
-    [[MARSUPIALS]]
-        script= sleep {{ SLEEP | default(3, true) }}
-
-    [[Quokka]]
-        inherit=MARSUPIALS
-        script = sleep 15
-
-    [[Numbat]]
-        inherit=MARSUPIALS
-
-    [[Wambenger]]
-        inherit=MARSUPIALS
-
-
+    [[cold_start]]
+        script = """
+        """
+    [[task]]
+        script = """
+        """

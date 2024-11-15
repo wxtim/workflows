@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
+notify-send "Cylc Workflow ${1}" \
+"${CYLC_WORKFLOW_ID}, ${1}. \nMessage Sent by event handler." \
+    --icon face-sad \
+    --app-name "Cylc - Workflow Stalled"
