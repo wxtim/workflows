@@ -7,6 +7,10 @@
     assimilation_job = 1..12
     forecast_job = 1..12
     pp_job = 1..6
+    # [[templates]]
+    #     assimilation_job = %(assimilation_job)s
+    #     forecast_job = %(forecast_job)s
+    #     pp_job = %(pp_job)s
 
 [scheduler]
     allow implicit tasks = True
@@ -32,15 +36,7 @@
 
 [runtime]
     [[root]]
-        script = """
-            echo "Hello World!"
-            max=$(((RANDOM % 20) + 1))
-            sleepy=$(((max + 10) - (RANDOM % max)))
-            printf "This script will sleep for %d\n" "$sleepy"
-            cylc message -- "INFO:Sleep $sleepy"
-            sleep "$sleepy"
-            echo "The script has finished sleeping"
-        """
+        script = sleepy --mean 20 --failure-probability 10
     [[HOUSEKEEPING]]
     [[BIG_SLURMJOB]]
     [[WEE_SLURMJOB]]
@@ -52,13 +48,13 @@
     [[install_cold, get_archive_data, mousekeep, archive]]
         inherit = HOUSEKEEPING, WEE_SLURMJOB
 
-    [[assimilation<assimilation_job>]]
+    [[<assimilation_job>]]
         inherit = ASSIMILATION, WEE_SLURMJOB
     
-    [[forecast<forecast_job>]]
+    [[<forecast_job>]]
         inherit = FORECAST, BIG_SLURMJOB
 
-    [[pp<pp_job>]]
+    [[<pp_job>]]
         inherit = POSTPROC
 
     [[mousekeep]]

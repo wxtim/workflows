@@ -1,0 +1,94 @@
+#!/usr/bin/env python
+"""Sleepy
+
+An app to provide random sleep for simulation purposes.
+"""
+
+from argparse import ArgumentParser
+import logging as LOG
+import os
+from random import gauss, randint
+from shlex import split
+from subprocess import run
+import sys
+from time import sleep
+
+
+NOT_CYLC_MESSAGE = "Not a Cylc Task, not sending Cylc message"
+
+
+def get_args():
+    parser = ArgumentParser(usage=__doc__)
+    parser.add_argument(
+        "--mean",
+        "-m",
+        help="Mean sleep time.",
+        type=int,
+        default=40,
+    )
+    parser.add_argument(
+        "--std",
+        "-s",
+        help="Standard deviation sleep time.",
+        type=int,
+        default=10,
+    )
+    parser.add_argument(
+        '--failure-probability', '-f',
+        help='Fail 1 in this many tasks.',
+        type=int,
+        default=0,
+        dest='fail',
+    )
+    return parser.parse_args()
+
+
+def get_sleeptime(mean: int = 40, stdev: int = 10) -> int:
+    """Get a random int from a Gaussian distribution.
+
+    Ensure that it is > 0
+    """
+    sleeptime = -1
+    while sleeptime < 1:
+        sleeptime = int(gauss(mean, stdev) // 1)
+    return sleeptime
+
+
+def cylc_message(sleeptime: int) -> None:
+    """Send a message to a Cylc workflow.
+
+    (If task is in a Cylc workflow, else don't, and handle it elegently).
+    """
+    try:
+        workflow_id = os.getenv("CYLC_WORKFLOW_ID")
+        job_id = os.getenv("CYLC_TASK_JOB")
+    except Exception:
+        LOG.warning(NOT_CYLC_MESSAGE)
+        pass
+    else:
+        run(split(f'cylc message -- "sleep {sleeptime}"'))
+
+
+def get_exit_code(failprob):
+    if failprob == 0:
+        return failprob
+    else:
+        if (randint(1, 10000) % failprob) == 0:
+            return 1
+        else:
+            return 0
+
+
+def main():
+    LOG.basicConfig(level=LOG.INFO, format="[%(levelname)s] %(message)s")
+    args = get_args()
+    sleeptime = get_sleeptime(args.mean, args.std)
+    LOG.info(f"Sleeping for {sleeptime}")
+    cylc_message(sleeptime)
+    sleep(sleeptime)
+    LOG.info(f"Slept for {sleeptime}")
+    sys.exit(get_exit_code(args.fail))
+
+
+if __name__ == "__main__":
+    main()
