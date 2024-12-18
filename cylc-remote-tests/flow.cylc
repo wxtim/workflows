@@ -1,0 +1,62 @@
+#!jinja2
+{% if groups is not defined %}
+    {% set groups=["slurm"] %}
+{% endif %}
+
+[meta]
+    title = Test Cylc Job Runner Specific tests
+    description = """
+        Run Cylc tests which use job runners.
+
+        Options for Cylc commands
+
+        * `-z groups=slurm,pbs,lsf,loadleveler`. Defaults to slurm.
+        * `-s 'platform="spice"'`. Defaults to spice.
+    """
+    created on = 2024-12-16T15
+
+{% for group in groups %}
+[task parameters]
+    {{group}}test = {{ group | tests }}
+    [[templates]]
+        {{group}}test = %({{group}}test)s
+{% endfor %}
+
+[scheduling]
+    cycling mode = integer
+    [[graph]]
+{% for group in groups %}
+        R1 = {{ group | upper }}:succeed-all => fin
+{% endfor %}
+
+[runtime]
+{% for group in groups %}
+    [[{{ group | upper }}]]
+{% endfor %}
+    [[SLURM, PBS, LOADLEVELLER]]
+    [[TESTS]]
+        script = """
+            micromamba activate cylc.dev
+            set -eux pipefail
+            CYLC_PATH="${HOME}/repos/cylc-flow"
+            TEST=${CYLC_PATH}/tests/functional/$(get-test-name ${CYLC_TASK_NAME})
+            echo ${TEST}
+            ${CYLC_PATH}/etc/bin/run-functional-tests -vvv -p '*' ${TEST}
+
+            if [[ $(grep NOTEST ${CYLC_TASK_LOG_ROOT}.out) ]]; then
+                echo "No test actually run"
+                cylc message -- "No test run"
+                exit 1
+            fi
+        """
+        platform = {{ platform | default("spice", true) }}
+        [[[outputs]]]
+            no_platform = "No test run"
+
+{% for group in groups %}
+    [[<{{group}}test>]]
+        inherit = {{ group | upper }}, TESTS
+{% endfor %}
+
+    [[fin]]
+
