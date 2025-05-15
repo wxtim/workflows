@@ -71,3 +71,7 @@
     {% do LOG.warning("Grill enabled") %}
         R1 = prep_food => grill_food => test_grilled_food
 {% endif %}
+
+[runtime]
+    [[test_grilled_food, test_baked_food, test_boiled_food, test_fried_food]]
+        script = exit $(RANDOM%2)
