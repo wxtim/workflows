@@ -32,3 +32,7 @@ one workflow.
 ## Optional Outputs
 
 Designed to show how optional outputs could support a workflow making choices.
+
+## Simple-Prune
+
+A simple workflow pruning workflow.
