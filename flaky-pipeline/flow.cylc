@@ -1,0 +1,22 @@
+[scheduler]
+    allow implicit tasks = True
+
+[scheduling]
+    cycling mode = integer
+    final cycle point = 20
+    [[graph]]
+        P1 = """
+            a? => b? => c?
+            a:failed? | b:failed? | (c? | c:failed?) => final_task
+        """
+
+[runtime]
+    [[root]]
+        script = """
+            sleep 2
+            RANDOM=$(date +%S)
+            exit $((RANDOM % 2))
+        """
+
+    [[final_task]]
+        script = python -c 'import report; report.main("abc", debug=False)'
