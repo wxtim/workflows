@@ -1,0 +1,33 @@
+[meta]
+    title = "Simple example of a Cylc workflow with a housekeeping task"
+    description = """
+        A Cylc workflow that runs a task every hour and a housekeeping
+        task to clean up logs older than 2 hours.
+
+        It should be noted that rose-prune may be more suitable for
+        complex workflows.
+    """
+
+[scheduling]
+    initial cycle point = 2000
+    [[graph]]
+        PT1H = task[-PT1H] => task => housekeep
+
+[runtime]
+    [[task]]
+        script = """
+            # Outputs a message to a file.
+
+            msg="Hello, ${CYLC_TASK_NAME} at ${CYLC_TASK_CYCLE_POINT}"
+            echo "${msg}" > $CYLC_TASK_WORK_DIR/output.txt
+            sleep 5
+        """
+
+    [[housekeep]]
+        script = """
+            # Housekeeping task to remove old logs from more that 2 hours ago.
+
+            HOUSEKEEPING_POINT=$(isodatetime ${CYLC_TASK_CYCLE_POINT} --offset -PT2H)
+            echo "Housekeeping at ${HOUSEKEEPING_POINT}"
+            rm -rf $CYLC_WORKFLOW_RUN_DIR/log/job/${HOUSEKEEPING_POINT}
+        """
