@@ -1,7 +1,25 @@
 #!/bin/bash
+# $1 = Some event info
+# $2 = Icon name
+
+# Set the inputs to sensible defaults if not provided:
+if [[ -n "${1}" ]]; then
+    MSG="${1}"
+elif [[ -n "${N_MSG}" ]]; then
+    MSG="${N_MSG}"
+else
+    MSG="No message provided."
+fi
+
+if [[ -n "${2}" ]]; then
+    ICON="${2}"
+elif [[ -n "${N_ICON}" ]]; then
+    ICON="${N_ICON}"
+else
+    ICON="dialog-question"
+fi
 
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
-notify-send "Cylc Workflow ${1}" \
-"${CYLC_WORKFLOW_ID}, ${1}. \nMessage Sent by event handler." \
-    --icon face-sad \
-    --app-name "Cylc - Workflow Stalled"
+notify-send "${MSG}" "${CYLC_WORKFLOW_ID}//${CYLC_TASK_ID}" \
+    --icon "${ICON}" \
+    --app-name "${CYLC_TASK_ID}"

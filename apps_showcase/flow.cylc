@@ -1,36 +1,30 @@
+#!jinja2
 [meta]
     description = """
         Showcase of interesting apps.
     """
 
+# At present this only works if the workflow is run on the user's
+# desktop, i.e. --host=localhost.
 [scheduler]
     [[events]]
-        stall handlers = gnome-message stall
+        # stall handlers = ssh {{ROSE_ORIG_HOST}} gnome-message stall
 
 [scheduling]
     [[graph]]
+        R1 = gnome_message
         R1 = """
-            gnome_message
+            random:fail? => random_failure_msg
+            random? => continue
+            continue => continue_msg
         """
+
 
 [runtime]
     [[gnome_message]]
-        script = """
-            export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
-            notify-send "Hello World" \
-            "Here's any old message." \
-                --icon face-smile \
-                --app-name "Cylc Notify Demo"
-
-            exit 1
-        """
-        err-script = """
-            export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/${UID}/bus}"
-            notify-send "Cylc Task Failed" \
-                "${CYLC_WORKFLOW_ID}//${CYLC_TASK_ID}\nMessage sent by error script." \
-                --icon face-sad \
-                --app-name "Cylc Notify Demo"
-        """
+        platform = $ROSE_ORIG_HOST
+        script = gnome-message "Hello World" "face-smile"; exit 1
+        err-script = gnome-message "Task Failed" "dialog-warning"
         [[[meta]]]
             description = """
                 Send a message to Gnome.
@@ -41,3 +35,24 @@
 
                 find /usr/share/icons/* -name "*.png"
             """
+
+    [[GMESSAGES]]
+        platform = $ROSE_ORIG_HOST
+        script = gnome-message
+
+    [[random_failure_msg]]
+        inherit = GMESSAGES
+        [[[environment]]]
+            N_MSG = "Random Task Failed"
+            N_ICON = "dialog-warning"
+
+    [[random]]
+        script = exit $((RANDOM % 2))
+
+    [[continue]]
+
+    [[continue_msg]]
+        inherit = GMESSAGES
+        [[[environment]]]
+            N_MSG = "Workflow Succeeded"
+            N_ICON = "checkbox-checked"

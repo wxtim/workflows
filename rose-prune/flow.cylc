@@ -1,0 +1,25 @@
+[meta]
+    name = example of using rose-arch to clean up log files.
+
+[scheduler]
+    cycle point format = %Y
+
+[scheduling]
+    initial cycle point = 2000
+    [[graph]]
+        P1Y = mytask[-P1Y] => mytask => archive
+
+[runtime]
+    [[mytask]]
+        # Tasks do _NOT_ have to use rose task-run
+        script = """
+            msg="Hello, ${CYLC_TASK_NAME} at ${CYLC_TASK_CYCLE_POINT}"
+            echo "${msg}" > "${CYLC_TASK_WORK_DIR}/hello.txt"
+            # Allows user to watch the workflow without it racing ahead:
+            sleep 5
+        """
+
+    [[archive]]
+        # See app/archive/rose-app.conf for details
+        # https://metomi.github.io/rose/doc/html/api/built-in/rose_arch.html
+        script = rose task-run
