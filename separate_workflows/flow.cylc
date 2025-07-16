@@ -1,0 +1,19 @@
+#!jinja2
+{{ assert(DATASETS is defined, "DATASETS not defined") }}
+
+[scheduler]
+    # Turn this off in a real workflow
+    allow implicit tasks = True
+
+[scheduling]
+    [[graph]]
+# Alternatively use the boolean values of ALPHA, BETA, GAMMA
+{% if "alpha" in DATASETS %}
+        R1 = get_dataset_alpha => prep_dataset_alpha => housekeep
+{% endif %}
+{% if "beta" in DATASETS %}
+        R1 = get_dataset_beta => prep_dataset_beta => housekeep
+{% endif %}
+{% if "gamma" in DATASETS %}
+        R1 = get_dataset_gamma => prep_dataset_gamma => housekeep
+{% endif %}
