@@ -17,3 +17,14 @@
 {% if "gamma" in DATASETS %}
         R1 = get_dataset_gamma => prep_dataset_gamma => housekeep
 {% endif %}
+
+# Alternative approach
+# {% if alpha is true %}
+#         R1 = get_dataset_alpha => prep_dataset_alpha => housekeep
+# {% endif %}
+# {% if beta is true %}
+#         R1 = get_dataset_beta => prep_dataset_beta => housekeep
+# {% endif %}
+# {% if gamma is true %}
+#         R1 = get_dataset_gamma => prep_dataset_gamma => housekeep
+# {% endif %}
