@@ -22,3 +22,7 @@ $ cylc graph .
 # or
 $ cylc view -p .
 ```
+
+## References
+
+[Rose configuration metadata](https://metomi.github.io/rose/doc/html/api/configuration/metadata.html#configuration-metadata)
