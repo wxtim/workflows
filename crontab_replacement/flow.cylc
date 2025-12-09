@@ -1,17 +1,9 @@
-#!jinja2
-{% if TEST is defined and TEST == True %}
-    {% set CLOCKTRIGGER = "" %}                # Arbitrary cycling for testing
-{% else %}
-    {% set CLOCKTRIGGER = "@wall_clock =>" %}    # As if it were Cron
-{% endif %}
-
-
 [meta]
     title = "Crontab replacement examples"
     description = """
         A workflow demonstrating how Cylc might be used instead of Cron.
 
-        To run in test mode use ``cylc vip -s 'TEST=True'``
+        To run use ``cylc vip``
     """
     written for cylc version = 8.0.x
     tested with cylc version = 8.1.0
@@ -20,23 +12,39 @@
 [scheduling]
     initial cycle point = now
 
+    [[xtriggers]]
+        wallclock = wall_clock()
+
     [[graph]]
         # Run a task every 5 minutes starting with 2 minutes after the hour
-        R/T0002/PT5M = {{CLOCKTRIGGER}} frequent_task
+        R/T0002/PT5M = @wallclock => frequent_task
+
         # Run a task every hour at 33 minutes past the hour
-        R/T0033/PT1H = {{CLOCKTRIGGER}} hourly_task
+        R/T0033/PT1H = @wallclock => hourly_task
+
         # Run a task every day at 0420
-        R/T0420/P1D = {{CLOCKTRIGGER}} daily_task
+        R/T0420/P1D = @wallclock => daily_task
+
         # every week at 1300 starting from 1st day of the month
-        R/01T1300/P1W = {{CLOCKTRIGGER}} weekly_task
+        R/01T1300/P1W = @wallclock =>  weekly_task
+
         # Every month starting from 1200 on the 15th
-        R/15T1200/P1M = {{CLOCKTRIGGER}} monthly_task
+        R/15T1200/P1M = @wallclock =>  monthly_task
 
 [runtime]
     [[frequent_task]]
+        # Put your scripts in the bin directory
+        # don't forget to chmod +x script.sh
         script = "hello_world.sh"
+        platform = spice
+
+        # Using cylc gives you extra options
+        # uncomment to try them:
+
+        # If at first you don't succceed:
+        # execution retry delays = PT5M, PT10M
+
     [[hourly_task]]
-        script = "hello_world.py"
     [[daily_task]]
     [[weekly_task]]
     [[monthly_task]]
