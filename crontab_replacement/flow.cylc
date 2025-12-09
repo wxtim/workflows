@@ -44,6 +44,9 @@
         # If at first you don't succceed:
         # execution retry delays = PT5M, PT10M
 
+        # How long should it take? (sets the --wallclock directive)
+        # execution time limit = PT5M
+
     [[hourly_task]]
     [[daily_task]]
     [[weekly_task]]
