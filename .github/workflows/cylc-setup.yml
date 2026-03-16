@@ -1,0 +1,23 @@
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Cylc
+        uses: cylc/setup-cylc@v1
+        with:
+          cylc_rose: true
+
+      - name: Run Cylc Tests
+        run: |
+          cylc validate ./my-workflow
+          cylc lint ./my-workflow
+
+      - name: Run Rose Tests
+        run: |
+          rose macro -V -C ./my-workflow
+          rose metadata-check -C ./my-workflow/meta
+          rose metadata-check -C ./my-workflow/app/my-app/meta
