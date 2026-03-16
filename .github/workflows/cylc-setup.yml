@@ -5,8 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
-      - '8.*.x'
+      - cylc-8
 
 jobs:
   test:
