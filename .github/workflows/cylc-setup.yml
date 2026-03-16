@@ -1,3 +1,13 @@
+name: Cylc Setup
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - '8.*.x'
+
 jobs:
   test:
     runs-on: ubuntu-latest
